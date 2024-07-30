@@ -17,9 +17,10 @@
 	<resources mapping="/resources/**" location="/resources/" />
 	<resources mapping="/js/**" location="/js/" />
 	<resources mapping="/css/*.css" location="/css/" />
-	<resources mapping="/images/**" location="/images/" />
+	<resources mapping="/img/**" location="/img/" />
 	<resources mapping="/upload/**" location="/upload/" />
-	<resources mapping="/product/**" location="/product/" />
+	<resources mapping="/ico/**" location="/ico/" />
+	<resources mapping="/admin/**" location="/admin/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -28,4 +29,5 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="shopping" />
+	<context:component-scan base-package="shopping_admin" />
 </beans:beans>
