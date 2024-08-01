@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 
 import org.springframework.stereotype.Repository;
 
-@Repository("MD5Encoder")
+@Repository("md5_encoder")
 public class PassEncoder {
 	public String encodePass (String pass) {
 		StringBuilder sb = new StringBuilder();

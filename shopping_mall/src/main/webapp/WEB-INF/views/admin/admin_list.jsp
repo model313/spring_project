@@ -69,10 +69,13 @@
 			        	
 			        	<cr:choose>
 			        		<cr:when test="${adminData.ad_approve=='N'}">
-					            <input type="button" value="승인" class="new_addbtn1" title="승인" onclick="adminApprove(${adminData.ad_idx})">
+					            <input type="button" value="승인" class="new_addbtn1" title="승인" onclick="adminApprove(${adminData.ad_idx},'${sessionScope.activeLoginID}')">
 			        		</cr:when>
 			        		<cr:when test="${adminData.ad_approve=='Y'}">
-					            <input type="button" value="미승인" class="new_addbtn2" title="미승인" onclick="adminNotApprove(${adminData.ad_idx})">
+					            <input type="button" value="미승인" class="new_addbtn2" title="미승인" onclick="adminNotApprove(${adminData.ad_idx},'${sessionScope.activeLoginID}')">
+			        		</cr:when>
+			        		<cr:when test="${adminData.ad_approve=='M'}">
+					        	---
 			        		</cr:when>
 			        		<cr:otherwise>
 			        			ERROR
@@ -98,5 +101,5 @@
     </div>
 </footer>
 </body>
-<script src="/js/admin_list.js?v=2"></script>
+<script src="/js/admin_list.js?v=3"></script>
 </html>

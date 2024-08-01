@@ -21,4 +21,21 @@
 		update admin_member set ad_approve='N' where ad_idx=#{ad_idx}
 	</update>
 	
+	<select id="adminSearch" resultType="adminDTO">
+		select * from admin_member where ad_id=#{ad_id}
+	</select>
+	
+	<insert id="addSite">
+		insert into admin_site values (
+		'0',
+		#{si_title},#{si_ademail},#{si_pointuse},#{si_joinpoint},
+		#{si_userlevel},#{si_coname},#{si_coregno},#{si_ceoname},
+		#{si_ceotel},#{si_mosregno},#{si_vatbregno},#{si_copostal},
+		#{si_coaddr},#{si_imadminname},#{si_imadminemail},#{si_nbkname},
+		#{si_bkaccno},#{si_cardpayuse},#{si_telpayuse},#{si_dcmcpayuse},
+		#{si_pointusemin},#{si_pointusemax},#{si_cashrcptuse},#{si_delconame},
+		#{si_delprice},#{si_deldateuse},now()
+		)
+	</insert>
+	
 </mapper>
