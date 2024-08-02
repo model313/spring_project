@@ -78,7 +78,6 @@ public class Admin_SQLController {
 		} finally {
 			this.pw.close();
 		}
-		
 		return null;
 	}
 	
@@ -156,6 +155,13 @@ public class Admin_SQLController {
 		} finally {
 			this.pw.close();
 		}
+		return null;
+	}
+	
+	@PostMapping("/admin/cate_add")
+	public String cateAdd(@ModelAttribute("catedo") Cate_DTO dto, HttpServletResponse res) {
+		res.setContentType("text/html;charset=utf-8");
+		//데이터 저장
 		return null;
 	}
 

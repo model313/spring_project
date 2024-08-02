@@ -28,8 +28,8 @@
     </div>
 
 </nav>
-<main class="maincss">
 <form id="siteInfoForm">
+<main class="maincss">
 	<section>
 	<p>홈페이지 가입환경 설정</p>
 	<div class="subpage_view">
@@ -238,10 +238,10 @@
 	    <button type="button" class="sub_btn2" title="저장 취소">저장 취소</button>
 	</div>
 	</section>
-</form>
 <section></section>
 <section></section>
 </main>
+</form>
 <footer class="main_copyright">
     <div>
         Copyright ⓒ 2024 shopbag All rights reserved.

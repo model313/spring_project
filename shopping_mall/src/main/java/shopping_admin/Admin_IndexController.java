@@ -83,4 +83,9 @@ public class Admin_IndexController {
 		return null;
 	}
 	
+	@GetMapping("/admin/cate_write")
+	public String cateWritePage() {
+		return "/admin/cate_write";
+	}
+	
 }
