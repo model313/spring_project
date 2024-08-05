@@ -229,6 +229,7 @@
     width:80px;
     color:white;
     cursor: pointer;
+    margin-right: 10px;
 }
 .product_label {
     width: 100px;

@@ -23,4 +23,6 @@ public class Site_DTO {
 	
 	String si_indate;
 	
+	String si_adminid;
+	
 }

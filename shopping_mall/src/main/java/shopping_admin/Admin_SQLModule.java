@@ -1,11 +1,13 @@
 package shopping_admin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -17,14 +19,17 @@ public class Admin_SQLModule {
 	@Resource(name="template")
 	private SqlSessionTemplate sst;
 	
-	public String searchData(String ad_id){
-		String ad = sst.selectOne("shop_project.adminCtn", ad_id);
-		return ad;
-	}
+	@Resource(name="session_call")
+	private LoginStatusCaller lsc;
 	
 	@Resource(name="md5_encoder")
 	private PassEncoder pe;
 	
+	public String searchData(String ad_id){
+		String ad = sst.selectOne("shop_project.adminCtn", ad_id);
+		return ad;
+	}
+		
 	public int addAdmin(Admin_DTO dto) {
 		String encresult = pe.encodePass(dto.getAd_pass());
 		int result = 0;
@@ -108,6 +113,25 @@ public class Admin_SQLModule {
 	
 	public int addSite(Site_DTO dto) {
 		int result = sst.insert("shop_project.addSite", dto);
+		return result;
+	}
+	
+	public List<Cate_DTO> selCateList(HttpServletRequest req){
+		List<Cate_DTO> li = new ArrayList<Cate_DTO>();
+		Map<String, String> sessionData = lsc.statusCall(req);
+		li = sst.selectList("shop_project.cateAll", sessionData.get("activeLoginID"));
+		return li;
+	}
+	
+	public int addCate(Cate_DTO dto, HttpServletRequest req) {
+		Map<String, String> sessionData = lsc.statusCall(req);
+		dto.setCa_adminid(sessionData.get("activeLoginID"));
+		int result = sst.insert("shop_project.addCate", dto);
+		return result;
+	}
+	
+	public int delCate(String[] caIdxList) {
+		int result = sst.delete("shop_project.delCate",caIdxList);
 		return result;
 	}
 	

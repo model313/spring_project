@@ -34,8 +34,24 @@
 		#{si_coaddr},#{si_imadminname},#{si_imadminemail},#{si_nbkname},
 		#{si_bkaccno},#{si_cardpayuse},#{si_telpayuse},#{si_dcmcpayuse},
 		#{si_pointusemin},#{si_pointusemax},#{si_cashrcptuse},#{si_delconame},
-		#{si_delprice},#{si_deldateuse},now()
+		#{si_delprice},#{si_deldateuse},now(),#{si_adminid}
 		)
 	</insert>
+	
+	<select id="cateAll" resultType="cateDTO">
+		select * from site_cate where ca_adminid=#{ca_adminid} order by ca_class asc;
+	</select>
+	
+	<insert id="addCate">
+		insert into site_cate values ('0',#{ca_class},#{ca_code},#{ca_name},#{ca_use},'N',now(),#{ca_adminid})
+	</insert>
+	
+	<delete id="delCate" parameterType="String">
+		delete from site_cate where ca_idx in (
+		<foreach collection="array" item="data" separator=",">
+		#{data}
+		</foreach>
+		)
+	</delete>
 	
 </mapper>

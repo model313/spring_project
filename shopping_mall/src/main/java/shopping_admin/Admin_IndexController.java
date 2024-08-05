@@ -29,32 +29,33 @@ public class Admin_IndexController {
 		return "/admin/index";
 	}
 	
-	@GetMapping("/admin/admin_list")
-	public String adminListPage(HttpServletRequest req, HttpServletResponse res) {
-		res.setContentType("text/html;charset=utf-8");
+	//Session 확인 > 로그인 아닌 상태 차단 (admin_top.jsp)
+	@GetMapping("/admin/login_status_ck")
+	public String login_status_ck(HttpServletRequest req, HttpServletResponse res) {
 		boolean loginStatusCondition = lsi.statusInspect(req);
-		//System.out.println(loginStatusCondition);
 		try {
 			this.pw = res.getWriter();
 			if(loginStatusCondition==false) {
-				this.pw.print("<script>"
-						+ "alert('로그인 하셔야 해당 페이지 접속 가능합니다');"
-						+ "location.href='./index';"
-						+ "</script>");
+				this.pw.print("0");
 			}
 			else {
-				this.pw.print("<script>"
-						+ "location.href='./admin_list.do';"
-						+ "</script>");
+				this.pw.print("1");
 			}
 		} catch (Exception e) {
-			this.pw.print("<script>"
-					+ "alert('서버 문제로 인해 해당 페이지 접속 가능합니다');"
-					+ "location.href='./index';"
-					+ "</script>");
+			this.pw.print("-1");
 		} finally {
 			this.pw.close();
 		}
+		return null;
+	}
+	
+	@GetMapping("/admin/admin_list")
+	public String adminListPage(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		this.pw = res.getWriter();
+		this.pw.print("<script>"
+				+ "location.href='./admin_list.do';"
+				+ "</script>");
+		this.pw.close();
 		return null;
 	}
 	
@@ -83,9 +84,35 @@ public class Admin_IndexController {
 		return null;
 	}
 	
-	@GetMapping("/admin/cate_write")
-	public String cateWritePage() {
-		return "/admin/cate_write";
+	@GetMapping("/admin/cate_list")
+	public String cateListPage(HttpServletResponse res) throws Exception {
+		this.pw = res.getWriter();
+		this.pw.print("<script>"
+				+ "location.href='./cate_list.do';"
+				+ "</script>");
+		this.pw.close();
+		return null;
 	}
+	
+	@GetMapping("/admin/cate_write")
+	public String cateWritePage(HttpServletResponse res) throws Exception {
+		this.pw = res.getWriter();
+		this.pw.print("<script>"
+				+ "location.href='./cate_write.do';"
+				+ "</script>");
+		this.pw.close();
+		return null;
+	}
+	
+	@GetMapping("/admin/product_write")
+	public String productWritePage(HttpServletResponse res) throws Exception{
+		this.pw = res.getWriter();
+		this.pw.print("<script>"
+				+ "location.href='./product_write.do';"
+				+ "</script>");
+		this.pw.close();
+		return null;
+	}
+	
 	
 }

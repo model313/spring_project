@@ -137,6 +137,8 @@ public class Admin_SQLController {
 	@PostMapping("/admin/site_add")
 	public String siteAdd(@ModelAttribute("sitedto") Site_DTO dto, HttpServletResponse res) {
 		res.setContentType("text/html;charset=utf-8");
+		//id 도 추가 dao.setattribute
+		
 		try {
 			this.pw = res.getWriter();
 			int callback = sm.addSite(dto);
@@ -158,11 +160,64 @@ public class Admin_SQLController {
 		return null;
 	}
 	
+	@GetMapping("/admin/cate_list.do")
+	public String cateList(Model m, HttpServletRequest req) {
+		List<Cate_DTO> li = null;
+		li = sm.selCateList(req);
+		m.addAttribute("resultList",li);
+		m.addAttribute("listSize",li.size());
+		return "/admin/cate_list";
+	}
+	
+	@GetMapping("/admin/cate_write.do")
+	public String cateWrite(Model m, HttpServletRequest req) {
+		List<Cate_DTO> li = null;
+		li = sm.selCateList(req);
+		m.addAttribute("resultList",li);
+		m.addAttribute("listSize",li.size());
+		return "/admin/cate_write";
+	}
+	
 	@PostMapping("/admin/cate_add")
-	public String cateAdd(@ModelAttribute("catedo") Cate_DTO dto, HttpServletResponse res) {
+	public String cateAdd(@ModelAttribute("catedo") Cate_DTO dto, HttpServletResponse res, HttpServletRequest req) {
 		res.setContentType("text/html;charset=utf-8");
-		//데이터 저장
+		try {
+			this.pw = res.getWriter();
+			int callback = sm.addCate(dto, req);
+			if(callback > 0) {
+				this.pw.print("<script>"
+						+ "alert('정상적으로 등록 완료 되었습니다');"
+						+ "location.href='./cate_list';"
+						+ "</script>");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.pw.print("<script>"
+					+ "alert('DB 오류로 인하여 등록되지 않았습니다');"
+					+ "history.go(-1);"
+					+ "</script>");
+		} finally {
+			this.pw.close();
+		}
 		return null;
+	}
+	
+	@GetMapping("/admin/cate_delete")
+	public String cateDelete(String[] caIdxList, HttpServletResponse res) throws Exception{
+		int result = sm.delCate(caIdxList);
+		String resultString = String.valueOf(result);
+		this.pw = res.getWriter();
+		this.pw.print(resultString);
+		return null;
+	}
+	
+	@GetMapping("/admin/product_write.do")
+	public String productWrite(Model m, HttpServletRequest req) {
+		List<Cate_DTO> li = null;
+		li = sm.selCateList(req);
+		m.addAttribute("resultList",li);
+		m.addAttribute("listSize",li.size());
+		return "/admin/product_write";
 	}
 
 }

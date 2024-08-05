@@ -25,7 +25,6 @@ const adminApprove = (idx, activeID) => {
 			.catch(error => {
 				alert('승인을 처리 하지 못했습니다');
 				location.href='./admin_list';
-				alert(error);
 			});
 		}
 	}
@@ -60,7 +59,6 @@ const adminNotApprove = (idx,activeID) => {
 			})
 			.catch(error => {
 				alert('승인을 처리 하지 못했습니다');
-				alert(error);
 				location.href='./admin_list';
 			});
 		}
