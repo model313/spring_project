@@ -37,7 +37,6 @@ const cateSelDel = () => {
 		return response.text();
 	})
 	.then(response2 => {
-		console.log(response2);
 		if(response2 > 0){
 			alert('성공적으로 카테고리 삭제되었습니다');
 			location.href='./cate_list';

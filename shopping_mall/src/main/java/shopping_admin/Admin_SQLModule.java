@@ -135,6 +135,10 @@ public class Admin_SQLModule {
 		return result;
 	}
 	
+	public String selProductCtn(String pr_code){
+		String ad = sst.selectOne("shop_project.productCtn", pr_code);
+		return ad;
+	}
 	
 	
 	

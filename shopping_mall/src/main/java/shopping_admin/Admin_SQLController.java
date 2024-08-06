@@ -1,5 +1,6 @@
 package shopping_admin;
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -208,16 +209,26 @@ public class Admin_SQLController {
 		String resultString = String.valueOf(result);
 		this.pw = res.getWriter();
 		this.pw.print(resultString);
+		this.pw.close();
 		return null;
 	}
 	
 	@GetMapping("/admin/product_write.do")
 	public String productWrite(Model m, HttpServletRequest req) {
-		List<Cate_DTO> li = null;
-		li = sm.selCateList(req);
-		m.addAttribute("resultList",li);
-		m.addAttribute("listSize",li.size());
+		List<Cate_DTO> cateLi = sm.selCateList(req);
+		
+		m.addAttribute("cateResultList",cateLi);
+		m.addAttribute("cateListSize",cateLi.size());
 		return "/admin/product_write";
+	}
+	
+	@GetMapping("/admin/product_code_check")
+	public String productCodeCheck(String pr_code, HttpServletResponse res) throws Exception{
+		this.pw = res.getWriter();
+		String result = sm.selProductCtn(pr_code); 
+		this.pw.print(result);
+		this.pw.close();
+		return null;
 	}
 
 }

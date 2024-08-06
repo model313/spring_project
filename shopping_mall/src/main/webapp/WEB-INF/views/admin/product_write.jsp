@@ -29,6 +29,7 @@
     </div>
 
 </nav>
+<form id="productForm">
 <main class="maincss">
 <section>
 <p>상품 등록 페이지</p>
@@ -38,12 +39,12 @@
         <li>
             <select class="product_input1" name="pr_caname">
             	<cr:choose>
-            		<cr:when test="${listSize == 0}">
+            		<cr:when test="${cateListSize == 0}">
             			<option>카테고리 없음</option>
             		</cr:when>
             		<cr:otherwise>
 		            	<option value="">카테고리 선택</option>
-		            	<cr:forEach var="cateData" items="${resultList}">
+		            	<cr:forEach var="cateData" items="${cateResultList}">
 			                <option>${cateData.ca_name}</option>
 		            	</cr:forEach>
             		</cr:otherwise>
@@ -61,9 +62,13 @@
     <ul>
         <li>상품코드</li>
         <li>
-            <input type="text" class="product_input1" name="pr_code"> 
-            <input type="button" value="자동생성" title="자동생성" class="product_btn">
-            <input type="button" value="중복확인" title="중복확인" class="product_btn">
+            <input type="text" 
+            	class="product_input1" 
+           		name="pr_code"
+           		oninput="this.value = this.value.replace(/[^0-9]/g,'')"
+         	/> 
+            <input type="button" value="자동생성" title="자동생성" class="product_btn" id="codeGenBtn" onclick="codeGen()">
+            <input type="button" value="중복확인" title="중복확인" class="product_btn" onclick="codeCheck()">
             <span class="help_text">※ 상품코드는 절대 중복되지 않도록 합니다.</span>
         </li>
     </ul>
@@ -89,6 +94,7 @@
 	            maxlength="7" 
 	            name="pr_price"
 	            oninput="this.value = this.value.replace(/[^0-9]/g,'')"
+	            onchange="dcPriceCompute()"
             />
             <span class="help_text">※ , 없이 숫자만 입력하세요 최대 7자리</span>
         </li>
@@ -102,6 +108,7 @@
             	value="0"
             	name="pr_dc"
             	oninput="this.value = this.value.replace(/[^0-9]/g,'')"
+            	onchange="dcPriceCompute()"
            	/>% 
             <span class="help_text">※ 숫자만 입력하세요</span>
         </li>
@@ -159,15 +166,15 @@
         <li>
             <ol style="width:100%; height: auto;">
             <li style="width:100%; height:45px;">
-            <input type="file" name="pr_file1">
+            <input type="file" name="pr_file1" accept="image/*" onchange="onAttachTypeCheck(this)">
             <span class="help_text">※ 상품 대표이미지 이며, 이미지 용량은 2MB 까지 입니다.</span>
             </li>
             <li style="height:45px;">
-            <input type="file" name="pr_file2">
+            <input type="file" name="pr_file2" accept="image/*" onchange="onAttachTypeCheck(this)">
             <span class="help_text">※ 추가 이미지 이며, 이미지 용량은 2MB 까지 입니다.</span>
             </li>
             <li style="height:45px;">
-            <input type="file" name="pr_file3">
+            <input type="file" name="pr_file3" accept="image/*" onchange="onAttachTypeCheck(this)">
             <span class="help_text">※ 추가 이미지 이며, 이미지 용량은 2MB 까지 입니다.</span>
             </li>
             </ol>
@@ -182,15 +189,16 @@
 </div>
 <div class="subpage_view4" style="text-align:center; margin-bottom: 100px;">
     <input type="button" value="상품 리스트" title="상품 리스트" class="p_button p_button_color1" style="margin-right: 5px;">
-    <input type="button" value="상품 등록" title="상품 등록" class="p_button p_button_color2">
+    <input type="button" value="상품 등록" title="상품 등록" class="p_button p_button_color2" onclick="productFormSend()">
 </div>
 </section>
 </main>
+</form>
 <footer class="main_copyright">
     <div>
         Copyright ⓒ 2024 shopbag All rights reserved.
     </div>
 </footer>
 </body>
-<script src="/js/product_write.js?v=1"></script>
+<script src="/js/product_write.js?v=10"></script>
 </html>

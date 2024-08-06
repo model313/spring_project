@@ -54,4 +54,8 @@
 		)
 	</delete>
 	
+	<select id="productCtn" resultType="String">
+		select count(*) as ctn from site_product where pr_code=#{pr_code}
+	</select>
+	
 </mapper>
