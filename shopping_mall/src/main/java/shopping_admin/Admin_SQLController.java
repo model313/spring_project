@@ -192,7 +192,7 @@ public class Admin_SQLController {
 						+ "</script>");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			this.pw.print("<script>"
 					+ "alert('DB 오류로 인하여 등록되지 않았습니다');"
 					+ "history.go(-1);"
@@ -229,6 +229,38 @@ public class Admin_SQLController {
 		this.pw.print(result);
 		this.pw.close();
 		return null;
+	}
+	
+	@PostMapping("/admin/product_add")
+	public String productAdd(@ModelAttribute("productdo") Product_DTO dto, HttpServletResponse res, HttpServletRequest req) {
+		res.setContentType("text/html;charset=utf-8");
+		try {
+			this.pw = res.getWriter();
+			int callback = sm.addProduct(dto, req);
+			if(callback > 0) {
+				this.pw.print("<script>"
+						+ "alert('정상적으로 등록 완료 되었습니다');"
+						+ "location.href='./product_list';"
+						+ "</script>");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.pw.print("<script>"
+					+ "alert('DB 오류로 인하여 등록되지 않았습니다');"
+					+ "history.go(-1);"
+					+ "</script>");
+		} finally {
+			this.pw.close();
+		}
+		return null;
+	}
+	
+	@GetMapping("/admin/product_list.do")
+	public String productList(Model m, HttpServletRequest req) {
+		List<Product_DTO> li = sm.selProductList(req);
+		m.addAttribute("resultList",li);
+		m.addAttribute("listSize",li.size());
+		return "/admin/cate_list";
 	}
 
 }

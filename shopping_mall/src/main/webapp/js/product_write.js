@@ -36,7 +36,15 @@ const onAttachTypeCheck = (input) => {
 };
 
 const productFormSend = () => {
-	new productDataTools().emptyCheck();
+	let resCondition1 = new productDataTools().emptyCheck();
+	let resCondition2 = new productDataTools().codeDupHistoryCheck();
+	if(resCondition1 == "Y"
+	&& resCondition2 == "Y"){
+		productForm.method = "POST";
+		productForm.action = "./product_add";
+		productForm.enctype = "multipart/form-data";
+		productForm.submit();
+	}
 }
 
 class productDataTools{
@@ -85,7 +93,8 @@ class productDataTools{
 	
 	codeDupHistoryCheck(){
 		var result = "N";
-		if(document.querySelector("[name='pr_code']").readonly!=true){
+		console.log(document.getElementById("codeGenBtn").disabled)
+		if(document.getElementById("codeGenBtn").disabled!=true){
 			alert("상품코드 중복확인 해주세요");
 		}
 		else{
@@ -118,21 +127,10 @@ class productDataTools{
 			alert("상품 재고를 등록해주세요");
 		}
 		else if (document.querySelector("[name='pr_file1']").value == ""){
-			//작동 안됨
-			let pr_file1 = document.querySelector("[name='pr_file1']");
-			let pr_file2 = document.querySelector("[name='pr_file2']");
-			let pr_file3 = document.querySelector("[name='pr_file3']");
-			if (pr_file2.value != ""){
-				pr_file1.setAttribute("value",pr_file2.value);
-			}
-			else if (pr_file3.value == ""){
-				pr_file1.setAttribute("value",pr_file3.value);
-			}
-			alert("첨부파일 최소한 하나가 필수입니다 (썸네일용)");
+			alert("상품 대표이미지를 선택해주세요");
 		}
 		else{
 			result = "Y";
-			console.log("Test");
 		}
 		
 		return result;

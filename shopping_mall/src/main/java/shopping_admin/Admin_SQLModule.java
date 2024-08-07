@@ -25,6 +25,10 @@ public class Admin_SQLModule {
 	@Resource(name="md5_encoder")
 	private PassEncoder pe;
 	
+	@Resource(name="file_process")
+	private FileProcessor fp;
+	
+	
 	public String searchData(String ad_id){
 		String ad = sst.selectOne("shop_project.adminCtn", ad_id);
 		return ad;
@@ -138,6 +142,41 @@ public class Admin_SQLModule {
 	public String selProductCtn(String pr_code){
 		String ad = sst.selectOne("shop_project.productCtn", pr_code);
 		return ad;
+	}
+	
+	public int addProduct(Product_DTO dto, HttpServletRequest req) throws Exception {
+		Map<String, String> sessionData = lsc.statusCall(req);
+		String activeID = sessionData.get("activeLoginID");
+		dto.setPr_adminid(activeID);
+		
+		Map<String,String> fileData1 = fp.fileProcess(dto.getPr_file1(), req);
+		Map<String,String> fileData2 = fp.fileProcess(dto.getPr_file2(), req);
+		Map<String,String> fileData3 = fp.fileProcess(dto.getPr_file3(), req);
+		
+		dto.setPr_file1name(fileData1.get("filename"));
+		dto.setPr_file1url(fileData1.get("fileurl"));
+		dto.setPr_file2name(fileData2.get("filename"));
+		dto.setPr_file2url(fileData2.get("fileurl"));
+		dto.setPr_file3name(fileData3.get("filename"));
+		dto.setPr_file3url(fileData3.get("fileurl"));
+		
+		
+		int result = sst.insert("shop_project.addProduct", dto);
+		// result 조건문 사용 필요하나? 아니면 위에 insert를 밑으로?
+		int updateCondition = sst.selectOne("shop_project.productCondition", activeID);
+		System.out.println(updateCondition);
+		if (updateCondition==0) {
+			
+		}
+		
+		return result;
+	}
+	
+	public List<Product_DTO> selProductList(HttpServletRequest req){
+		List<Product_DTO> li = new ArrayList<Product_DTO>();
+		Map<String, String> sessionData = lsc.statusCall(req);
+		li = sst.selectList("shop_project.productAll", sessionData.get("activeLoginID"));
+		return li;
 	}
 	
 	

@@ -183,12 +183,12 @@
     <ul style="height: 400px;">
         <li>상품 상세설명</li>
         <li>
-            <textarea class="product_text1"></textarea>
+            <textarea class="product_text1" name="pr_desc"></textarea>
         </li>
     </ul>
 </div>
 <div class="subpage_view4" style="text-align:center; margin-bottom: 100px;">
-    <input type="button" value="상품 리스트" title="상품 리스트" class="p_button p_button_color1" style="margin-right: 5px;">
+    <input type="button" value="상품 리스트" title="상품 리스트" class="p_button p_button_color1" style="margin-right: 5px;" onclick="location.href='./product_list';">
     <input type="button" value="상품 등록" title="상품 등록" class="p_button p_button_color2" onclick="productFormSend()">
 </div>
 </section>
@@ -200,5 +200,5 @@
     </div>
 </footer>
 </body>
-<script src="/js/product_write.js?v=10"></script>
+<script src="/js/product_write.js?v=1"></script>
 </html>

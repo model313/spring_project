@@ -39,7 +39,7 @@
 	</insert>
 	
 	<select id="cateAll" resultType="cateDTO">
-		select * from site_cate where ca_adminid=#{ca_adminid} order by ca_class asc;
+		select * from site_cate where ca_adminid=#{ca_adminid} order by ca_class asc
 	</select>
 	
 	<insert id="addCate">
@@ -57,5 +57,29 @@
 	<select id="productCtn" resultType="String">
 		select count(*) as ctn from site_product where pr_code=#{pr_code}
 	</select>
+	
+	<insert id="addProduct">
+		insert into site_product values (
+		'0',
+		#{pr_caname},#{pr_code},#{pr_name},#{pr_info},
+		#{pr_price},#{pr_dc},#{pr_dcprice},#{pr_stock},
+		#{pr_selluse},#{pr_earlystockuse},#{pr_file1name},#{pr_file1url},
+		#{pr_file2name},#{pr_file2url},#{pr_file3name},#{pr_file3url},
+		#{pr_desc},#{pr_adminid}
+		)
+	</insert>
+	
+	<select id="productAll" resultType="productDTO">
+		select * from site_product where pr_adminid=#{pr_adminid} order by pr_caname asc
+	</select>
+	
+	<select id="productCondition">
+		select count(*) as ctn from site_product where pr_adminid=#{pr_adminid}
+	</select>
+	
+	<update id="cateUpdateExists">
+		update site_cate set ca_pdexists=${ca_pdexists} where ca_idx=#{ca_idx}
+	</update>
+	
 	
 </mapper>

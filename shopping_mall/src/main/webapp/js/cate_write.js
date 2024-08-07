@@ -39,7 +39,7 @@ const cateFormSend = () => {
 	&& resCondition3 == "Y"
 	&& resCondition4 == "Y"){
 		cateForm.method="POST";
-		cateForm.action="./cate_add"
+		cateForm.action="./cate_add";
 		cateForm.submit();
 	}
 	else if(resCondition1 == "Y"

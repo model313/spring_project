@@ -114,5 +114,15 @@ public class Admin_IndexController {
 		return null;
 	}
 	
+	@GetMapping("/admin/product_list")
+	public String productListPage(HttpServletResponse res) throws Exception{
+		this.pw = res.getWriter();
+		this.pw.print("<script>"
+				+ "location.href='./product_list.do';"
+				+ "</script>");
+		this.pw.close();
+		return null;
+	}
+	
 	
 }

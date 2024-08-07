@@ -10,7 +10,8 @@ import lombok.Setter;
 public class Product_DTO {
 	int pr_idx;
 	String pr_caname, pr_code, pr_name, pr_info;
-	int pr_price, pr_dc, pr_dcprice, pr_stock;
+	int pr_price, pr_dc, pr_stock;
+	float pr_dcprice;
 	String pr_selluse,  pr_earlystockuse;
 	String pr_file1name, pr_file1url, pr_file2name, 
 	pr_file2url, pr_file3name, pr_file3url;
