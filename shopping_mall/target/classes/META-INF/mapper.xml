@@ -73,12 +73,16 @@
 		select * from site_product where pr_adminid=#{pr_adminid} order by pr_caname asc
 	</select>
 	
-	<select id="productCondition">
+	<select id="productCondition" resultType="_int">
 		select count(*) as ctn from site_product where pr_adminid=#{pr_adminid}
 	</select>
 	
 	<update id="cateUpdateExists">
-		update site_cate set ca_pdexists=${ca_pdexists} where ca_idx=#{ca_idx}
+		update site_cate set ca_pdexists='Y' where ca_name=#{ca_name}
+	</update>
+	
+	<update id="cateUpdateNotExists">
+		update site_cate set ca_pdexists='N' where ca_name=#{ca_name}
 	</update>
 	
 	

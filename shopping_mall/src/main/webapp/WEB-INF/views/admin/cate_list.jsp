@@ -71,9 +71,10 @@
 					<li>${cateData.ca_code}</li>
 					<li style="text-align: left; text-indent: 5px;">${cateData.ca_name}</li>
 					<li>-</li>
-					<li style="text-align: left; text-indent: 5px;">-</li>
+					<li style="text-align: left; text-indent: 5px;">-<input type="hidden" name="ca_pdexists" value="${cateData.ca_pdexists}"></li>
 					<li id="ca_use">${cateData.ca_use}</li>
 					<li onclick="cateMod(${cateData.ca_idx})" style="cursor: pointer">[수정]</li>
+					
 				</ul>
     		</cr:forEach>
     	</cr:otherwise>
@@ -104,5 +105,5 @@
     </div>
 </footer>
 </body>
-<script src="/js/cate_list.js?v=4"></script>
+<script src="/js/cate_list.js?v=6"></script>
 </html>

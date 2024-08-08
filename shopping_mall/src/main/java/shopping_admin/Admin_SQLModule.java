@@ -160,15 +160,16 @@ public class Admin_SQLModule {
 		dto.setPr_file3name(fileData3.get("filename"));
 		dto.setPr_file3url(fileData3.get("fileurl"));
 		
-		
-		int result = sst.insert("shop_project.addProduct", dto);
-		// result 조건문 사용 필요하나? 아니면 위에 insert를 밑으로?
+		//site_cate 테이블 pd_exists 업데이트
 		int updateCondition = sst.selectOne("shop_project.productCondition", activeID);
 		System.out.println(updateCondition);
 		if (updateCondition==0) {
-			
+			String ca_name = dto.getPr_caname();
+			int updateResult = sst.update("shop_project.cateUpdateExists", ca_name);
+			System.out.println(updateResult);
 		}
 		
+		int result = sst.insert("shop_project.addProduct", dto);
 		return result;
 	}
 	
