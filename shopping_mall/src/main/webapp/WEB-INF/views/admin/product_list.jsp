@@ -66,26 +66,25 @@
         		<li style="width: 100%;">등록된 상품이 없습니다.</li>
     		</ul>
     	</cr:when>
+    	<cr:otherwise>
+		    <cr:forEach var="data" items="${resultList}">
+			    <ul>
+			        <li><input type="checkbox"></li>
+			        <li>상품코드</li>
+			        <li>이미지</li>
+			        <li>상품명</li>
+			        <li>카테고리 분류</li>
+			        <li>34,000</li>
+			        <li>30,000</li>
+			        <li>11%</li>
+			        <li>100</li>
+			        <li>Y</li>
+			        <li>N</li>
+			        <li>관리</li>
+			    </ul>
+		    </cr:forEach>
+    	</cr:otherwise>
     </cr:choose>
-    <cr:forEach var="data" items="${resultList}">
-	    <ul>
-	        <li><input type="checkbox"></li>
-	        <li>상품코드</li>
-	        <li>이미지</li>
-	        <li>상품명</li>
-	        <li>카테고리 분류</li>
-	        <li>34,000</li>
-	        <li>30,000</li>
-	        <li>11%</li>
-	        <li>100</li>
-	        <li>Y</li>
-	        <li>N</li>
-	        <li>관리</li>
-	    </ul>
-    </cr:forEach>
-    <ul>
-        <li style="width: 100%;">등록된 상품이 없습니다.</li>
-    </ul>
 </div>
 <div class="subpage_view3">
     <ul class="pageing">

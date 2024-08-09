@@ -105,5 +105,5 @@
     </div>
 </footer>
 </body>
-<script src="/js/cate_list.js?v=6"></script>
+<script src="/js/cate_list.js?v=2"></script>
 </html>

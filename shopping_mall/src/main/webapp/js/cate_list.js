@@ -19,11 +19,11 @@ const cateSel = () => {
 };
 
 const cateSelAll = () => {
-	new cateListDataTools().pdExistsCheck();
-	
 	for(var f=0;f<cateSelCK.length;f++){
 		cateSelCK[f].checked = cateSelAllCK.checked;
 	};
+	
+	new cateListDataTools().pdExistsCheck();
 };
 
 const cateMod = (input) => {
@@ -64,14 +64,17 @@ const cateSelDel = () => {
 class cateListDataTools{
 	pdExistsCheck(){
 		let existsList = document.querySelectorAll("[name='ca_pdexists']");
+		let result = "N";
 		for(var f=0; f<existsList.length; f++){
 			if(existsList[f].value=="Y" && cateSelCK[f].checked==true){
-				alert("선택 하신 카테고리안에 등록된 상품이 있습니다!!");
-				alert("해당 카테고리에 속한 상품이 모두 변경 또는 삭제후 카테고리 수정 부탁합니다");
+				result = "Y";
 				cateSelCK[f].checked=false;
 			}
 		}
-		
+		if(result == "Y"){
+			alert("선택 하신 카테고리안에 등록된 상품이 있습니다!!");
+			alert("해당 카테고리에 속한 상품이 모두 변경 또는 삭제후 카테고리 수정 부탁합니다");
+		}
 	}
 	
 	

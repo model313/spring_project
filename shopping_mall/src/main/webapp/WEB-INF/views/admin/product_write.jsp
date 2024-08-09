@@ -200,5 +200,5 @@
     </div>
 </footer>
 </body>
-<script src="/js/product_write.js?v=1"></script>
+<script src="/js/product_write.js?v=2"></script>
 </html>

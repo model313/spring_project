@@ -27,7 +27,13 @@ const dcPriceCompute = () => {
 	let dcprice = document.querySelector("[name='pr_dcprice']");
 	
 	if (price!=""){
-		dcprice.setAttribute("value",price * (100 - dc)/100);
+		if (dc==0){
+			dcprice.setAttribute("value",0);
+		}
+		else{
+			dcprice.setAttribute("value",price * (100 - dc)/100);
+			
+		}
 	}
 }
 
