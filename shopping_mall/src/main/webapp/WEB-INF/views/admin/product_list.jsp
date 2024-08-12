@@ -70,16 +70,16 @@
 		    <cr:forEach var="data" items="${resultList}">
 			    <ul>
 			        <li><input type="checkbox"></li>
-			        <li>상품코드</li>
-			        <li>이미지</li>
-			        <li>상품명</li>
-			        <li>카테고리 분류</li>
-			        <li>34,000</li>
-			        <li>30,000</li>
-			        <li>11%</li>
-			        <li>100</li>
-			        <li>Y</li>
-			        <li>N</li>
+			        <li>${data.pr_code}</li>
+			        <li>${data.pr_file1name} ${data.pr_file2name} ${data.pr_file3name}</li>
+			        <li>${data.pr_name}</li>
+			        <li>${data.pr_caname}</li>
+			        <li>${data.pr_price}</li>
+			        <li>${data.pr_dcprice}</li>
+			        <li>${data.pr_dc}</li>
+			        <li>${data.pr_stock}</li>
+			        <li>${data.pr_selluse}</li>
+			        <li>${data.pr_earlystockuse}</li>
 			        <li>관리</li>
 			    </ul>
 		    </cr:forEach>
@@ -110,4 +110,5 @@
     </div>
 </footer>
 </body>
+<script src="/js/product_list.js?v=1"></script>
 </html>

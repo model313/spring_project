@@ -260,7 +260,7 @@ public class Admin_SQLController {
 		List<Product_DTO> li = sm.selProductList(req);
 		m.addAttribute("resultList",li);
 		m.addAttribute("listSize",li.size());
-		return "/admin/cate_list";
+		return "/admin/product_list";
 	}
 
 }
