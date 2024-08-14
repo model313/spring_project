@@ -6,7 +6,7 @@ const cateSel = () => {
 	
 	var count = 0;
 	for(var f=0;f<cateSelCK.length;f++){
-		if(cateSelCK[f].check==true){
+		if(cateSelCK[f].checked==true){
 			count++;
 		}
 	}

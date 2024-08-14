@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="cr" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -11,7 +12,8 @@
     <link rel="stylesheet" type="text/css" href="/css/basic.css">
     <link rel="stylesheet" type="text/css" href="/css/login.css?v=1">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/css/product.css?v=5">
+    <link rel="stylesheet" type="text/css" href="/css/product.css?v=6">
+    <link rel="stylesheet" type="text/css" href="/css/imagemodal.css?v=2">
     <link rel="icon" href="/img/logo.png" sizes="128x128">
     <link rel="icon" href="/img/logo.png" sizes="64x64">
     <link rel="icon" href="/img/logo.png" sizes="32x32">
@@ -47,7 +49,7 @@
 </div>
 <div class="subpage_view2">
     <ul>
-        <li><input type="checkbox"></li>
+        <li><input type="checkbox" name="prodAllCk" onclick="prodSelAll()"></li>
         <li>코드</li>
         <li>이미지</li>
         <li>상품명</li>
@@ -69,15 +71,33 @@
     	<cr:otherwise>
 		    <cr:forEach var="data" items="${resultList}">
 			    <ul>
-			        <li><input type="checkbox"></li>
+			        <li><input type="checkbox" name="prodCk" value="${data.pr_idx}" onclick="prodSel()"></li>
 			        <li>${data.pr_code}</li>
-			        <li>${data.pr_file1name} ${data.pr_file2name} ${data.pr_file3name}</li>
+			        <li>
+			        	<input type="button" value="보기" title="이미지 상세보기" class="p_image" onclick="imageModalOpen(${data.pr_idx})">
+			        	<div id="imageModal${data.pr_idx}" class="modal">
+			        		<span class="close" onclick="imageModalClose(${data.pr_idx})">&times;</span>
+			        		<img class="modal-content" src="/upload/${data.pr_file1url}">
+			        		<div class="caption">${data.pr_file1name}</div>
+		        			<cr:if test="${data.pr_file2name!=''}">
+				        		<img class="modal-content" src="/upload/${data.pr_file2url}">
+				        		<div class="caption">${data.pr_file2name}</div>
+		        			</cr:if>
+		        			<cr:if test="${data.pr_file3name!=''}">
+				        		<img class="modal-content" src="/upload/${data.pr_file3url}">
+				        		<div class="caption">${data.pr_file3name}</div>
+		        			</cr:if>
+			        	</div>
+		        	</li>
 			        <li>${data.pr_name}</li>
-			        <li>${data.pr_caname}</li>
-			        <li>${data.pr_price}</li>
-			        <li>${data.pr_dcprice}</li>
-			        <li>${data.pr_dc}</li>
-			        <li>${data.pr_stock}</li>
+			        <li>
+			        	${data.pr_caname}
+			        	<input type="hidden" name="caname" value="${data.pr_caname}">
+		        	</li>
+			        <li><fmt:formatNumber value="${data.pr_price}" pattern="#,###"/>원</li>
+			        <li><fmt:formatNumber value="${data.pr_dcprice}" pattern="#,###"/>원</li>
+			        <li>${data.pr_dc}%</li>
+			        <li>${data.pr_stock} EA</li>
 			        <li>${data.pr_selluse}</li>
 			        <li>${data.pr_earlystockuse}</li>
 			        <li>관리</li>
@@ -96,10 +116,10 @@
     </ul>
 </div>
 <div class="subpage_view4">
-    <input type="button" value="선택상품 삭제" title="선택상품 삭제" class="p_button">
+    <input type="button" value="선택상품 삭제" title="선택상품 삭제" class="p_button" onclick="prodSelDel()">
     <span style="float: right;">
-    <input type="button" value="신규상품 등록" title="신규상품 등록" class="p_button p_button_color1">
-    <input type="button" value="카테고리 등록" title="카테고리 등록" class="p_button p_button_color2">
+    <input type="button" value="신규상품 등록" title="신규상품 등록" class="p_button p_button_color1" onclick="location.href='./product_write';">
+    <input type="button" value="카테고리 등록" title="카테고리 등록" class="p_button p_button_color2" onclick="location.href='./cate_list';">
     </span>
 </div>
 </section>
@@ -110,5 +130,5 @@
     </div>
 </footer>
 </body>
-<script src="/js/product_list.js?v=1"></script>
+<script src="/js/product_list.js?v=4"></script>
 </html>

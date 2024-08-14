@@ -262,5 +262,15 @@ public class Admin_SQLController {
 		m.addAttribute("listSize",li.size());
 		return "/admin/product_list";
 	}
+	
+	@GetMapping("/admin/prod_delete")
+	public String prodDelete(String[] prIdxList, HttpServletResponse res, HttpServletRequest req) throws Exception{
+		int result = sm.delProd(prIdxList,req);
+		String resultString = String.valueOf(result);
+		this.pw = res.getWriter();
+		this.pw.print(resultString);
+		this.pw.close();
+		return null;
+	}
 
 }

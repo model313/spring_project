@@ -161,10 +161,9 @@ public class Admin_SQLModule {
 		dto.setPr_file3url(fileData3.get("fileurl"));
 		
 		//site_cate 테이블 pd_exists 업데이트
-		int updateCondition = sst.selectOne("shop_project.productCondition", activeID);
-		System.out.println(updateCondition);
+		String ca_name = dto.getPr_caname();
+		int updateCondition = sst.selectOne("shop_project.productCondition", ca_name);
 		if (updateCondition==0) {
-			String ca_name = dto.getPr_caname();
 			int updateResult = sst.update("shop_project.cateUpdateExists", ca_name);
 			System.out.println(updateResult);
 		}
@@ -180,7 +179,24 @@ public class Admin_SQLModule {
 		return li;
 	}
 	
-	
+	public int delProd(String[] prIdxList, HttpServletRequest req) {
+		Map<String, String> sessionData = lsc.statusCall(req);
+		String activeID = sessionData.get("activeLoginID");
+		//dto.setPr_adminid(activeID);
+		
+		
+		int result = sst.delete("shop_project.delProd",prIdxList);
+		
+		/*
+		int updateCondition = sst.selectOne("shop_project.productCondition", activeID);
+		if (updateCondition==0) {
+			String ca_name = dto.getPr_caname();
+			int updateResult = sst.update("shop_project.cateUpdateExists", ca_name);
+			System.out.println(updateResult);
+		}
+		*/
+		return result;
+	}
 	
 	
 }

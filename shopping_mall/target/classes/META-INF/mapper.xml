@@ -74,12 +74,20 @@
 	</select>
 	
 	<select id="productCondition" resultType="_int">
-		select count(*) as ctn from site_product where pr_adminid=#{pr_adminid}
+		select count(*) as ctn from site_product where pr_caname=#{pr_caname}
 	</select>
 	
 	<update id="cateUpdateExists">
 		update site_cate set ca_pdexists='Y' where ca_name=#{ca_name}
 	</update>
+	
+	<delete id="delProd" parameterType="String">
+		delete from site_product where pr_idx in (
+		<foreach collection="array" item="data" separator=",">
+		#{data}
+		</foreach>
+		)
+	</delete>
 	
 	<update id="cateUpdateNotExists">
 		update site_cate set ca_pdexists='N' where ca_name=#{ca_name}
