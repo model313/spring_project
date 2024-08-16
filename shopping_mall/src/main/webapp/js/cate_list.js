@@ -37,28 +37,29 @@ const cateSelDel = () => {
 			caIdxList.push(cateSelCK[f].value);
 		}
 	};
-	
-	fetch(`./cate_delete?caIdxList=${caIdxList}`,{
-		method : "GET",
-		headers : {"content-type":"application/html"}
-	})
-	.then(response => {
-		return response.text();
-	})
-	.then(response2 => {
-		if(response2 > 0){
-			alert('성공적으로 카테고리 삭제되었습니다');
+	if(confirm("해당 데이터는 더 이상 복구 되지 않습니다")){
+		fetch(`./cate_delete?caIdxList=${caIdxList}`,{
+			method : "GET",
+			headers : {"content-type":"application/html"}
+		})
+		.then(response => {
+			return response.text();
+		})
+		.then(response2 => {
+			if(response2 > 0){
+				alert('성공적으로 카테고리 삭제되었습니다');
+				location.href='./cate_list';
+			}
+			else if (response2 == 0){
+				alert('서버 문제로 인해 선택하신 카테고리를 삭제 못했습니다');
+				location.href='./cate_list';
+			}
+		})
+		.catch(error => {
+			alert('데이터 정송 오류로 인해 카테고리를 삭제 못했습니다');
 			location.href='./cate_list';
-		}
-		else if (response2 == 0){
-			alert('서버 문제로 인해 선택하신 카테고리를 삭제 못했습니다');
-			location.href='./cate_list';
-		}
-	})
-	.catch(error => {
-		alert('데이터 정송 오류로 인해 카테고리를 삭제 못했습니다');
-		location.href='./cate_list';
-	});
+		});
+	}
 };
 
 class cateListDataTools{

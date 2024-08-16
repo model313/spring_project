@@ -10,5 +10,5 @@
         <p>관리자 : ${sessionScope.activeLoginUser }님 <a href="#">[개인정보 수정]</a> <a href="./admin_logout">[로그아웃]</a></p>
     </div>
 </header>
-<script src="/js/admin_top.js?v=2"></script>
+<script src="/js/admin_top.js?v=4"></script>
 </html>

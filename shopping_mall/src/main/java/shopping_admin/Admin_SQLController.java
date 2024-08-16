@@ -264,8 +264,9 @@ public class Admin_SQLController {
 	}
 	
 	@GetMapping("/admin/prod_delete")
-	public String prodDelete(String[] prIdxList, HttpServletResponse res, HttpServletRequest req) throws Exception{
-		int result = sm.delProd(prIdxList,req);
+	public String prodDelete(String[] prIdxList, String[] caNameList, HttpServletResponse res, HttpServletRequest req) throws Exception{
+		System.out.println(Arrays.toString(caNameList));
+		int result = sm.delProd(prIdxList,caNameList,req);
 		String resultString = String.valueOf(result);
 		this.pw = res.getWriter();
 		this.pw.print(resultString);

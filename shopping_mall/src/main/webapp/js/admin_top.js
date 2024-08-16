@@ -1,4 +1,5 @@
 window.onload = (event) => {
+	console.log("testlogin");
 	fetch("./login_status_ck",{
 		method : "GET",
 		headers : {"content-type":"application/html"}

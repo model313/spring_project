@@ -162,10 +162,13 @@ public class Admin_SQLModule {
 		
 		//site_cate 테이블 pd_exists 업데이트
 		String ca_name = dto.getPr_caname();
-		int updateCondition = sst.selectOne("shop_project.productCondition", ca_name);
+		Map<String, String> selectMap = new HashMap<>();
+		selectMap.put("ca_name", ca_name);
+		selectMap.put("activeID", activeID);
+		int updateCondition = sst.selectOne("shop_project.productCondition", selectMap);
 		if (updateCondition==0) {
-			int updateResult = sst.update("shop_project.cateUpdateExists", ca_name);
-			System.out.println(updateResult);
+			int updateResult = sst.update("shop_project.cateUpdateExists", selectMap);
+			//System.out.println(updateResult);
 		}
 		
 		int result = sst.insert("shop_project.addProduct", dto);
@@ -179,23 +182,26 @@ public class Admin_SQLModule {
 		return li;
 	}
 	
-	public int delProd(String[] prIdxList, HttpServletRequest req) {
+	public int delProd(String[] prIdxList, String[] caNameList, HttpServletRequest req) {
 		Map<String, String> sessionData = lsc.statusCall(req);
 		String activeID = sessionData.get("activeLoginID");
-		//dto.setPr_adminid(activeID);
-		
 		
 		int result = sst.delete("shop_project.delProd",prIdxList);
 		
-		/*
-		int updateCondition = sst.selectOne("shop_project.productCondition", activeID);
-		if (updateCondition==0) {
-			String ca_name = dto.getPr_caname();
-			int updateResult = sst.update("shop_project.cateUpdateExists", ca_name);
-			System.out.println(updateResult);
+		//해당 카테고리 안에 상품 없으면 업데이트
+		for (String ca_name : caNameList) {
+			Map<String, String> selectMap = new HashMap<>();
+			selectMap.put("ca_name", ca_name);
+			selectMap.put("activeID", activeID);
+			int updateCondition = sst.selectOne("shop_project.productCondition", selectMap);
+			//System.out.println(updateCondition);
+			if (updateCondition==0) {
+				int updateResult = sst.update("shop_project.cateUpdateNotExists", selectMap);
+				//System.out.println(updateResult);
+			}
 		}
-		*/
 		return result;
+		//return 0;
 	}
 	
 	

@@ -73,12 +73,12 @@
 		select * from site_product where pr_adminid=#{pr_adminid} order by pr_caname asc
 	</select>
 	
-	<select id="productCondition" resultType="_int">
-		select count(*) as ctn from site_product where pr_caname=#{pr_caname}
+	<select id="productCondition" resultType="_int" parameterType="Map">
+		select count(*) as ctn from site_product where pr_caname=#{ca_name} and pr_adminid=#{activeID}
 	</select>
 	
-	<update id="cateUpdateExists">
-		update site_cate set ca_pdexists='Y' where ca_name=#{ca_name}
+	<update id="cateUpdateExists" parameterType="Map">
+		update site_cate set ca_pdexists='Y' where ca_name=#{ca_name} and ca_adminid=#{activeID}
 	</update>
 	
 	<delete id="delProd" parameterType="String">
@@ -89,8 +89,8 @@
 		)
 	</delete>
 	
-	<update id="cateUpdateNotExists">
-		update site_cate set ca_pdexists='N' where ca_name=#{ca_name}
+	<update id="cateUpdateNotExists" parameterType="Map"> 
+		update site_cate set ca_pdexists='N' where ca_name=#{ca_name} and ca_adminid=#{activeID}
 	</update>
 	
 	

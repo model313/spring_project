@@ -130,5 +130,5 @@
     </div>
 </footer>
 </body>
-<script src="/js/product_list.js?v=4"></script>
+<script src="/js/product_list.js?v=5"></script>
 </html>

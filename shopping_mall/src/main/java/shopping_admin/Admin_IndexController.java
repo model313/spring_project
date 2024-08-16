@@ -124,5 +124,9 @@ public class Admin_IndexController {
 		return null;
 	}
 	
+	@GetMapping("/admin/notice_write")
+	public String noticeWritePage() {
+		return "/admin/notice_write";
+	}
 	
 }
