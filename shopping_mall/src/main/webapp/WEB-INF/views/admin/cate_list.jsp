@@ -8,14 +8,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>상품등록 페이지</title>
-    <link rel="stylesheet" type="text/css" href="/css/basic.css">
-    <link rel="stylesheet" type="text/css" href="/css/login.css?v=1">
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/css/category.css?v=6">
-    <link rel="icon" href="/img/logo.png" sizes="128x128">
-    <link rel="icon" href="/img/logo.png" sizes="64x64">
-    <link rel="icon" href="/img/logo.png" sizes="32x32">
-    <link rel="icon" href="/img/logo.png" sizes="16x16">
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/basic.css">
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/login.css?v=1">
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/category.css?v=6">
+    <link rel="icon" href="/resources/admin/img/logo.png" sizes="128x128">
+    <link rel="icon" href="/resources/admin/img/logo.png" sizes="64x64">
+    <link rel="icon" href="/resources/admin/img/logo.png" sizes="32x32">
+    <link rel="icon" href="/resources/admin/img/logo.png" sizes="16x16">
 </head>
 <body>
 <%@ include file="./admin_top.jsp" %>
@@ -83,11 +83,11 @@
 </div>
 <div class="subpage_view3">
     <ul class="pageing">
-        <li><img src="/ico/double_left.svg"></li>
-        <li><img src="/ico/left.svg"></li>
+        <li><img src="/resources/admin/ico/double_left.svg"></li>
+        <li><img src="/resources/admin/ico/left.svg"></li>
         <li>1</li>
-        <li><img src="/ico/right.svg"></li>
-        <li><img src="/ico/double_right.svg"></li>
+        <li><img src="/resources/admin/ico/right.svg"></li>
+        <li><img src="/resources/admin/ico/double_right.svg"></li>
     </ul>
 </div>
 <div class="subpage_view4">
@@ -105,5 +105,5 @@
     </div>
 </footer>
 </body>
-<script src="/js/cate_list.js?v=3"></script>
+<script src="/resources/admin/js/cate_list.js?v=3"></script>
 </html>

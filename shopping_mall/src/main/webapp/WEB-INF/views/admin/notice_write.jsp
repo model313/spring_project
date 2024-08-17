@@ -7,18 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항 등록 페이지</title>
-    <link rel="stylesheet" type="text/css" href="/css/basic.css">
-    <link rel="stylesheet" type="text/css" href="/css/login.css?v=10">
-    <link rel="stylesheet" type="text/css" href="/css/main.css?v=10">
-    <link rel="stylesheet" type="text/css" href="/css/notice.css?v=10">
-    <link rel="icon" href="/img/logo.png" sizes="128x128">
-    <link rel="icon" href="/img/logo.png" sizes="64x64">
-    <link rel="icon" href="/img/logo.png" sizes="32x32">
-    <link rel="icon" href="/img/logo.png" sizes="16x16">
-    <script src="/resources/ckeditor/ckeditor.js?v=5"></script>
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/basic.css">
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/login.css?v=10">
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/main.css?v=10">
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/notice.css?v=10">
+    <link rel="icon" href="/resources/admin/img/logo.png" sizes="128x128">
+    <link rel="icon" href="/resources/admin/img/logo.png" sizes="64x64">
+    <link rel="icon" href="/resources/admin/img/logo.png" sizes="32x32">
+    <link rel="icon" href="/resources/admin/img/logo.png" sizes="16x16">
 </head>
 <body>
 <%@ include file="./admin_top.jsp" %>
+
 <nav class="navcss">
     <div class="nav_div">
         <ol>
@@ -78,5 +78,6 @@
     </div>
 </footer>
 </body>
-<script src="/js/notice_write.js?v=2"></script>
+<script src="/resources/admin/ckeditor/ckeditor.js?v=6"></script>
+<script src="/resources/admin/js/notice_write.js?v=2"></script>
 </html>
