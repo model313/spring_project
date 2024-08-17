@@ -204,5 +204,39 @@ public class Admin_SQLModule {
 		//return 0;
 	}
 	
+	public Map<String, String> callActiveUser (HttpServletRequest req){
+		Map<String, String> sessionData = lsc.statusCall(req);
+		return sessionData;
+	}
 	
+	public int addNotice(Notice_DTO dto, HttpServletRequest req) throws Exception{
+		Map<String, String> sessionData = lsc.statusCall(req);
+		String activeID = sessionData.get("activeLoginID");
+		dto.setAn_adminid(activeID);
+		
+		Map<String,String> fileData = fp.fileProcess(dto.getAn_file(), req);
+		dto.setAn_filename(fileData.get("filename"));
+		dto.setAn_fileurl(fileData.get("fileurl"));
+		
+		int result = sst.insert("shop_project.addNotice", dto);
+		return result;
+	}
+	
+	public List<Notice_DTO> selNoticeList (HttpServletRequest req) {
+		Map<String, String> sessionData = lsc.statusCall(req);
+		String activeID = sessionData.get("activeLoginID");
+		List<Notice_DTO> li = sst.selectList("shop_project.noticeAll",activeID);
+		return li;
+	}
+	
+	public int delNotice(String[] caIdxList) {
+		int result = sst.delete("shop_project.delNotice",caIdxList);
+		return result;
+	}
+	
+	public List<Notice_DTO> selNoticeView (String an_idx) {
+		List<Notice_DTO> li = sst.selectList("shop_project.noticeView",an_idx);
+		//System.out.println(li);
+		return li;
+	}
 }

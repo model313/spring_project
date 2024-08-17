@@ -93,5 +93,31 @@
 		update site_cate set ca_pdexists='N' where ca_name=#{ca_name} and ca_adminid=#{activeID}
 	</update>
 	
+	<insert id="addNotice">
+		insert into admin_notice values (
+		'0',
+		#{an_showtop},#{an_title},#{an_adname},
+		#{an_filename},#{an_fileurl},#{an_cktext},
+		'0',#{an_adminid},now()
+		)
+	</insert>
+	
+	<select id="noticeAll" resultType="noticeDTO">
+		select * from admin_notice where an_adminid=#{activeID} order by an_showtop desc, an_idx desc
+	</select>
+	
+	<delete id="delNotice" parameterType="String">
+		delete from admin_notice where an_idx in (
+		<foreach collection="array" item="data" separator=",">
+		#{data}
+		</foreach>
+		)
+	</delete>
+	
+	<select id="noticeView" resultType="noticeDTO" parameterType="String">
+		select * from admin_notice where an_idx=#{an_idx}
+	</select>
+	
+	
 	
 </mapper>

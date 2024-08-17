@@ -232,7 +232,7 @@ public class Admin_SQLController {
 	}
 	
 	@PostMapping("/admin/product_add")
-	public String productAdd(@ModelAttribute("productdo") Product_DTO dto, HttpServletResponse res, HttpServletRequest req) {
+	public String productAdd(@ModelAttribute("productdto") Product_DTO dto, HttpServletResponse res, HttpServletRequest req) {
 		res.setContentType("text/html;charset=utf-8");
 		try {
 			this.pw = res.getWriter();
@@ -265,13 +265,69 @@ public class Admin_SQLController {
 	
 	@GetMapping("/admin/prod_delete")
 	public String prodDelete(String[] prIdxList, String[] caNameList, HttpServletResponse res, HttpServletRequest req) throws Exception{
-		System.out.println(Arrays.toString(caNameList));
+		//System.out.println(Arrays.toString(caNameList));
 		int result = sm.delProd(prIdxList,caNameList,req);
 		String resultString = String.valueOf(result);
 		this.pw = res.getWriter();
 		this.pw.print(resultString);
 		this.pw.close();
 		return null;
+	}
+	
+	@GetMapping("/admin/notice_write.do")
+	public String noticeWrite(Model m, HttpServletRequest req) {
+		Map<String, String> activeUserInfo = sm.callActiveUser(req);
+		m.addAttribute("activeLoginUser",activeUserInfo.get("activeLoginUser"));
+		return "/admin/notice_write";
+	}
+	
+	@PostMapping("/admin/notice_add")
+	public String noticeAdd(@ModelAttribute("noticedto") Notice_DTO dto, HttpServletResponse res, HttpServletRequest req) {
+		res.setContentType("text/html;charset=utf-8");
+		try {
+			this.pw = res.getWriter();
+			int callback = sm.addNotice(dto, req);
+			if(callback > 0) {
+				this.pw.print("<script>"
+						+ "alert('정상적으로 등록 완료 되었습니다');"
+						+ "location.href='./notice_list';"
+						+ "</script>");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.pw.print("<script>"
+					+ "alert('DB 오류로 인하여 등록되지 않았습니다');"
+					+ "history.go(-1);"
+					+ "</script>");
+		} finally {
+			this.pw.close();
+		}
+		return null;
+	}
+	
+	@GetMapping("/admin/notice_list.do")
+	public String noticeList(Model m, HttpServletRequest req) {
+		List<Notice_DTO> li = sm.selNoticeList(req);
+		m.addAttribute("resultList",li);
+		m.addAttribute("listSize",li.size());
+		return "/admin/notice_list";
+	}
+	
+	@GetMapping("/admin/notice_delete")
+	public String noticeDelete(String[] anIdxList, HttpServletResponse res) throws Exception{
+		int result = sm.delNotice(anIdxList);
+		String resultString = String.valueOf(result);
+		this.pw = res.getWriter();
+		this.pw.print(resultString);
+		this.pw.close();
+		return null;
+	}
+	
+	@GetMapping("/admin/notice_view")
+	public String noticeView(String an_idx, Model m, HttpServletRequest req) {
+		List<Notice_DTO> li = sm.selNoticeView(an_idx);
+		m.addAttribute("resultList",li);
+		return "/admin/notice_view";
 	}
 
 }

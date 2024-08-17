@@ -166,10 +166,11 @@
     border:1px solid rgb(81, 61, 61);
     text-indent: 5px;
     font-size: 13px;
+    background-color:#c6c6c6;
 }
 .notice_input3{
     width: 770px;
-    height: 400px;
+    height: 20px;
     border:1px solid rgb(81, 61, 61);
     padding-left: 5px;
     padding-top: 5px;
@@ -179,13 +180,19 @@
 }
 
 .write_view > .ul_height {
-    height: 410px;
+    height: 350px;
 }
 .write_view > .ul_height > li { 
     padding-top: 5px;
-    height: 410px;
+    height: 350px;
 }
 .fileview { 
     margin-left: 10px;
     color: brown;
+}
+.open_notice {
+	cursor: pointer;
+}
+.open_notice:hover {
+	text-decoration: underline;
 }

@@ -7,5 +7,6 @@
 		<typeAlias alias="adminDTO" type="shopping_admin.Admin_DTO"/>
 		<typeAlias alias="cateDTO" type="shopping_admin.Cate_DTO"/>
 		<typeAlias alias="productDTO" type="shopping_admin.Product_DTO"/>
+		<typeAlias alias="noticeDTO" type="shopping_admin.Notice_DTO"/>
 	</typeAliases>
 </configuration>

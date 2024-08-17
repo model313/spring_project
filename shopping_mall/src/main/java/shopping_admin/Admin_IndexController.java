@@ -125,8 +125,23 @@ public class Admin_IndexController {
 	}
 	
 	@GetMapping("/admin/notice_write")
-	public String noticeWritePage() {
-		return "/admin/notice_write";
+	public String noticeWritePage(HttpServletResponse res) throws Exception {
+		this.pw = res.getWriter();
+		this.pw.print("<script>"
+				+ "location.href='./notice_write.do';"
+				+ "</script>");
+		this.pw.close();
+		return null;
+	}
+	
+	@GetMapping("/admin/notice_list")
+	public String noticeListPage(HttpServletResponse res) throws Exception{
+		this.pw = res.getWriter();
+		this.pw.print("<script>"
+				+ "location.href='./notice_list.do';"
+				+ "</script>");
+		this.pw.close();
+		return null;
 	}
 	
 }
