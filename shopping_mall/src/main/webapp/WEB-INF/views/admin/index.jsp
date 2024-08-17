@@ -7,16 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
-    <link rel="stylesheet" type="text/css" href="/css/basic.css">
-    <link rel="stylesheet" type="text/css" href="/css/mainlogin.css?v=3">
-    <link rel="icon" href="/img/logo.png" sizes="128x128">
-    <link rel="icon" href="/img/logo.png" sizes="64x64">
-    <link rel="icon" href="/img/logo.png" sizes="32x32">
-    <link rel="icon" href="/img/logo.png" sizes="16x16">
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/basic.css">
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/mainlogin.css?v=3">
+    <link rel="icon" href="/resources/admin/img/logo.png" sizes="128x128">
+    <link rel="icon" href="/resources/admin/img/logo.png" sizes="64x64">
+    <link rel="icon" href="/resources/admin/img/logo.png" sizes="32x32">
+    <link rel="icon" href="/resources/admin/img/logo.png" sizes="16x16">
 </head>
 <body class="bodycss">
     <header class="admin_title">
-        <p><img src="/img/logo.png" class="logo_sm"> ADMINISTRATOR</p>
+        <p><img src="/resources/admin/img/logo.png" class="logo_sm"> ADMINISTRATOR</p>
     </header>
     <section class="admin_bgcolor">
 	    <form id="adminLoginFrm">
@@ -48,5 +48,5 @@
         </div>
     </footer>
 </body>
-<script src="/js/index.js?v=1"></script>
+<script src="/resources/admin/js/index.js?v=1"></script>
 </html>

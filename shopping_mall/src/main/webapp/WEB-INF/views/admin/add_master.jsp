@@ -7,17 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 등록 페이지</title>
-    <link rel="stylesheet" type="text/css" href="/css/basic.css">
-    <link rel="stylesheet" type="text/css" href="/css/login.css?v=1">
-    <link rel="icon" href="/img/logo.png" sizes="128x128">
-    <link rel="icon" href="/img/logo.png" sizes="64x64">
-    <link rel="icon" href="/img/logo.png" sizes="32x32">
-    <link rel="icon" href="/img/logo.png" sizes="16x16">
-    <script src="/js/add_master.js?v=1"></script>
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/basic.css">
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/login.css?v=1">
+    <link rel="icon" href="/resources/admin/img/logo.png" sizes="128x128">
+    <link rel="icon" href="/resources/admin/img/logo.png" sizes="64x64">
+    <link rel="icon" href="/resources/admin/img/logo.png" sizes="32x32">
+    <link rel="icon" href="/resources/admin/img/logo.png" sizes="16x16">
+    <script src="/resources/admin/js/add_master.js?v=1"></script>
 </head>
 <body>
     <header class="admin_title_add">
-        <p><img src="/img/logo.png" class="logo_sm"> ADMINISTRATOR ADD</p>
+        <p><img src="/resources/admin/img/logo.png" class="logo_sm"> ADMINISTRATOR ADD</p>
     </header>
 
     <section class="admin_bgcolor_add">
