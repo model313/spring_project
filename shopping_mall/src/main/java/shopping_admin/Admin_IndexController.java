@@ -144,4 +144,14 @@ public class Admin_IndexController {
 		return null;
 	}
 	
+	@GetMapping("/admin/shop_member_list")
+	public String shopMemberListPage(HttpServletResponse res) throws Exception{
+		this.pw = res.getWriter();
+		this.pw.print("<script>"
+				+ "location.href='./shop_member_list.do';"
+				+ "</script>");
+		this.pw.close();
+		return null;
+	}
+	
 }

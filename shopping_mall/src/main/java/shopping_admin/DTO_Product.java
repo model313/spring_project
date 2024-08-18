@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Product_DTO {
+public class DTO_Product {
 	int pr_idx;
 	String pr_caname, pr_code, pr_name, pr_info;
 	int pr_price, pr_dc, pr_stock;

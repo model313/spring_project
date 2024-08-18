@@ -73,8 +73,8 @@
 	</ul>
 	</div>
 	<div class="board_btn">
-	    <button class="border_del">공지목록</button>
-	    <button class="border_add" onclick="noticeFormSend()">공지등록</button>
+	    <input type="button" value="공지목록" class="border_del">
+	    <input type="button" value="공지등록" class="border_add" onclick="noticeFormSend()">
 	</div>
 	</section>
 	</main>

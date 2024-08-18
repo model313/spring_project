@@ -234,8 +234,8 @@
 		</ul>
 	</div>
 	<div class="btn_div">
-	    <button type="button" class="sub_btn1" title="설정 저장" onclick="siteFormSend()">설정 저장</button>
-	    <button type="button" class="sub_btn2" title="저장 취소">저장 취소</button>
+	    <input type="button" value="설정 저장" class="sub_btn1" title="설정 저장" onclick="siteFormSend()">
+	    <input type="button" value="저장 취소" class="sub_btn2" title="저장 취소">
 	</div>
 	</section>
 <section></section>

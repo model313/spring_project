@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="/resources/admin/css/login.css?v=1">
     <link rel="stylesheet" type="text/css" href="/resources/admin/css/main.css">
     <link rel="stylesheet" type="text/css" href="/resources/admin/css/product.css?v=6">
-    <link rel="stylesheet" type="text/css" href="/resources/admin/css/imagemodal.css?v=2">
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/imagemodal.css?v=3">
     <link rel="icon" href="/resources/admin/img/logo.png" sizes="128x128">
     <link rel="icon" href="/resources/admin/img/logo.png" sizes="64x64">
     <link rel="icon" href="/resources/admin/img/logo.png" sizes="32x32">

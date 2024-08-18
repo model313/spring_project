@@ -103,7 +103,7 @@
 	</insert>
 	
 	<select id="noticeAll" resultType="noticeDTO">
-		select * from admin_notice where an_adminid=#{activeID} order by an_showtop desc, an_idx desc
+		select * from admin_notice where an_adminid=#{activeID} order by an_showtop asc, an_idx desc
 	</select>
 	
 	<delete id="delNotice" parameterType="String">
@@ -118,6 +118,24 @@
 		select * from admin_notice where an_idx=#{an_idx}
 	</select>
 	
+	<update id="noticeUpdate">
+		update admin_notice 
+		set 
+		an_showtop=#{an_showtop}, 
+		an_title=#{an_title},
+		an_filename=#{an_filename},
+		an_fileurl=#{an_fileurl},
+		an_cktext=#{an_cktext}
+		where an_idx=#{an_idx}
+	</update>
 	
+	<update id="noticeCountUpdate">
+		update admin_notice
+		set an_viewcount=an_viewcount + 1
+		where an_idx=#{an_idx}
+	</update>
 	
+	<select id="agreeAll" resultType="agreeDTO">
+		select * from site_agree where ag_adminid=#{ag_adminid}
+	</select>
 </mapper>

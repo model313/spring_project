@@ -73,8 +73,8 @@
                 <li class="font_color1">※ 가입완료 후 전산 담당자가 확인 후 로그인 할 수 있습니다.</li>
             </ul>
             <span class="admin_addbtn">
-                <button type="button" class="btn_button btncolor1" title="관리자 등록" onclick="admin_add()">관리자 등록</button>
-                <button type="button" class="btn_button btncolor2" title="관리자 취소" onclick="admin_cancel()">등록 취소</button>
+                <input type="button" value="관리자 등록" class="btn_button btncolor1" title="관리자 등록" onclick="admin_add()">
+                <input type="button" value="등록 취소" class="btn_button btncolor2" title="관리자 취소" onclick="admin_cancel()">
             </span>
         </div>
     </form>

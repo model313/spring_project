@@ -53,7 +53,7 @@ public class Admin_SQLController {
 	}
 	
 	@PostMapping("/admin/admin_add")
-	public String adminAdd(@ModelAttribute("admindto") Admin_DTO dto, HttpServletResponse res) {
+	public String adminAdd(@ModelAttribute("admindto") DTO_Admin dto, HttpServletResponse res) {
 		res.setContentType("text/html;charset=utf-8");
 		try {
 			this.pw = res.getWriter();
@@ -86,7 +86,7 @@ public class Admin_SQLController {
 	
 	@GetMapping("/admin/admin_list.do")
 	public String adminList(Model m) {
-		List<Admin_DTO> li = null;
+		List<DTO_Admin> li = null;
 		li = sm.selAdminList();
 		m.addAttribute("resultList",li);
 		m.addAttribute("listSize",li.size());
@@ -112,7 +112,7 @@ public class Admin_SQLController {
 	private HttpSession session;
 	
 	@PostMapping("/admin/ad_login_check")
-	public String adLoginCheck(@ModelAttribute("admindto") Admin_DTO dto, HttpServletResponse res, HttpServletRequest req) {
+	public String adLoginCheck(@ModelAttribute("admindto") DTO_Admin dto, HttpServletResponse res, HttpServletRequest req) {
 		res.setContentType("text/html;charset=utf-8");
 		Map<String, Object> callbackMap = sm.loginAdmin(dto.getAd_id(), dto.getAd_pass());
 		try {
@@ -136,7 +136,7 @@ public class Admin_SQLController {
 	}
 	
 	@PostMapping("/admin/site_add")
-	public String siteAdd(@ModelAttribute("sitedto") Site_DTO dto, HttpServletResponse res) {
+	public String siteAdd(@ModelAttribute("sitedto") DTO_Site dto, HttpServletResponse res) {
 		res.setContentType("text/html;charset=utf-8");
 		//id 도 추가 dao.setattribute
 		
@@ -163,7 +163,7 @@ public class Admin_SQLController {
 	
 	@GetMapping("/admin/cate_list.do")
 	public String cateList(Model m, HttpServletRequest req) {
-		List<Cate_DTO> li = null;
+		List<DTO_Cate> li = null;
 		li = sm.selCateList(req);
 		m.addAttribute("resultList",li);
 		m.addAttribute("listSize",li.size());
@@ -172,7 +172,7 @@ public class Admin_SQLController {
 	
 	@GetMapping("/admin/cate_write.do")
 	public String cateWrite(Model m, HttpServletRequest req) {
-		List<Cate_DTO> li = null;
+		List<DTO_Cate> li = null;
 		li = sm.selCateList(req);
 		m.addAttribute("resultList",li);
 		m.addAttribute("listSize",li.size());
@@ -180,7 +180,7 @@ public class Admin_SQLController {
 	}
 	
 	@PostMapping("/admin/cate_add")
-	public String cateAdd(@ModelAttribute("catedo") Cate_DTO dto, HttpServletResponse res, HttpServletRequest req) {
+	public String cateAdd(@ModelAttribute("catedo") DTO_Cate dto, HttpServletResponse res, HttpServletRequest req) {
 		res.setContentType("text/html;charset=utf-8");
 		try {
 			this.pw = res.getWriter();
@@ -215,7 +215,7 @@ public class Admin_SQLController {
 	
 	@GetMapping("/admin/product_write.do")
 	public String productWrite(Model m, HttpServletRequest req) {
-		List<Cate_DTO> cateLi = sm.selCateList(req);
+		List<DTO_Cate> cateLi = sm.selCateList(req);
 		
 		m.addAttribute("cateResultList",cateLi);
 		m.addAttribute("cateListSize",cateLi.size());
@@ -232,7 +232,7 @@ public class Admin_SQLController {
 	}
 	
 	@PostMapping("/admin/product_add")
-	public String productAdd(@ModelAttribute("productdto") Product_DTO dto, HttpServletResponse res, HttpServletRequest req) {
+	public String productAdd(@ModelAttribute("productdto") DTO_Product dto, HttpServletResponse res, HttpServletRequest req) {
 		res.setContentType("text/html;charset=utf-8");
 		try {
 			this.pw = res.getWriter();
@@ -257,7 +257,7 @@ public class Admin_SQLController {
 	
 	@GetMapping("/admin/product_list.do")
 	public String productList(Model m, HttpServletRequest req) {
-		List<Product_DTO> li = sm.selProductList(req);
+		List<DTO_Product> li = sm.selProductList(req);
 		m.addAttribute("resultList",li);
 		m.addAttribute("listSize",li.size());
 		return "/admin/product_list";
@@ -282,7 +282,7 @@ public class Admin_SQLController {
 	}
 	
 	@PostMapping("/admin/notice_add")
-	public String noticeAdd(@ModelAttribute("noticedto") Notice_DTO dto, HttpServletResponse res, HttpServletRequest req) {
+	public String noticeAdd(@ModelAttribute("noticedto") DTO_Notice dto, HttpServletResponse res, HttpServletRequest req) {
 		res.setContentType("text/html;charset=utf-8");
 		try {
 			this.pw = res.getWriter();
@@ -307,7 +307,7 @@ public class Admin_SQLController {
 	
 	@GetMapping("/admin/notice_list.do")
 	public String noticeList(Model m, HttpServletRequest req) {
-		List<Notice_DTO> li = sm.selNoticeList(req);
+		List<DTO_Notice> li = sm.selNoticeList(req);
 		m.addAttribute("resultList",li);
 		m.addAttribute("listSize",li.size());
 		return "/admin/notice_list";
@@ -324,10 +324,58 @@ public class Admin_SQLController {
 	}
 	
 	@GetMapping("/admin/notice_view")
-	public String noticeView(String an_idx, Model m, HttpServletRequest req) {
-		List<Notice_DTO> li = sm.selNoticeView(an_idx);
+	public String noticeView(String an_idx, Model m) {
+		List<DTO_Notice> li = sm.selNoticeView(an_idx);
 		m.addAttribute("resultList",li);
+		
+		int result = sm.updateNoticeCount(an_idx);
 		return "/admin/notice_view";
+	}
+	
+	@GetMapping("/admin/notice_mod")
+	public String noticeModify(String an_idx, Model m) {
+		List<DTO_Notice> li = sm.selNoticeView(an_idx);
+		m.addAttribute("resultList",li);
+		return "/admin/notice_mod";
+	}
+	
+	@PostMapping("/admin/notice_update")
+	public String noticeUpdate (@ModelAttribute("noticedto") DTO_Notice dto, HttpServletResponse res, HttpServletRequest req) {
+		res.setContentType("text/html;charset=utf-8");
+		if(dto.getAn_filename()==null) {
+			dto.setAn_filename("");
+			dto.setAn_fileurl("");
+		}
+		
+		try {
+			this.pw = res.getWriter();
+			int callback = sm.updateNotice(dto, req);
+			if(callback > 0) {
+				this.pw.print("<script>"
+						+ "alert('정상적으로 등록 완료 되었습니다');"
+						+ "location.href='./notice_list';"
+						+ "</script>");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.pw.print("<script>"
+					+ "alert('DB 오류로 인하여 등록되지 않았습니다');"
+					+ "history.go(-1);"
+					+ "</script>");
+		} finally {
+			this.pw.close();
+		}
+		return null;
+	}
+	
+	@GetMapping("/admin/shop_member_list.do")
+	public String shopMemberList (Model m, HttpServletRequest req) {
+		List<DTO_Agree> agreeList = sm.selAgreeView(req);
+		System.out.println(agreeList);
+		
+		m.addAttribute("agreeListResults",agreeList);
+		m.addAttribute("agreeListSize",agreeList.size());
+		return "/admin/shop_member_list";
 	}
 
 }

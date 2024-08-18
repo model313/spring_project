@@ -34,7 +34,7 @@ public class Admin_SQLModule {
 		return ad;
 	}
 		
-	public int addAdmin(Admin_DTO dto) {
+	public int addAdmin(DTO_Admin dto) {
 		String encresult = pe.encodePass(dto.getAd_pass());
 		int result = 0;
 		if(encresult=="ERROR") {
@@ -48,8 +48,8 @@ public class Admin_SQLModule {
 	}
 	
 	
-	public List<Admin_DTO> selAdminList(){
-		List<Admin_DTO> li = new ArrayList<Admin_DTO>();
+	public List<DTO_Admin> selAdminList(){
+		List<DTO_Admin> li = new ArrayList<DTO_Admin>();
 		li = sst.selectList("shop_project.adminAll");
 		return li;
 	}
@@ -76,7 +76,7 @@ public class Admin_SQLModule {
 		
 		String ad_passEncoded = pe.encodePass(ad_pass);
 		
-		Admin_DTO dto = sst.selectOne("shop_project.adminSearch", ad_id);
+		DTO_Admin dto = sst.selectOne("shop_project.adminSearch", ad_id);
 		try {
 			if (!ad_passEncoded.equals(dto.getAd_pass())) {
 				responseScript = "<script>"
@@ -115,19 +115,19 @@ public class Admin_SQLModule {
 		return resultMap;
 	}
 	
-	public int addSite(Site_DTO dto) {
+	public int addSite(DTO_Site dto) {
 		int result = sst.insert("shop_project.addSite", dto);
 		return result;
 	}
 	
-	public List<Cate_DTO> selCateList(HttpServletRequest req){
-		List<Cate_DTO> li = new ArrayList<Cate_DTO>();
+	public List<DTO_Cate> selCateList(HttpServletRequest req){
+		List<DTO_Cate> li = new ArrayList<DTO_Cate>();
 		Map<String, String> sessionData = lsc.statusCall(req);
 		li = sst.selectList("shop_project.cateAll", sessionData.get("activeLoginID"));
 		return li;
 	}
 	
-	public int addCate(Cate_DTO dto, HttpServletRequest req) {
+	public int addCate(DTO_Cate dto, HttpServletRequest req) {
 		Map<String, String> sessionData = lsc.statusCall(req);
 		dto.setCa_adminid(sessionData.get("activeLoginID"));
 		int result = sst.insert("shop_project.addCate", dto);
@@ -144,7 +144,7 @@ public class Admin_SQLModule {
 		return ad;
 	}
 	
-	public int addProduct(Product_DTO dto, HttpServletRequest req) throws Exception {
+	public int addProduct(DTO_Product dto, HttpServletRequest req) throws Exception {
 		Map<String, String> sessionData = lsc.statusCall(req);
 		String activeID = sessionData.get("activeLoginID");
 		dto.setPr_adminid(activeID);
@@ -175,8 +175,8 @@ public class Admin_SQLModule {
 		return result;
 	}
 	
-	public List<Product_DTO> selProductList(HttpServletRequest req){
-		List<Product_DTO> li = new ArrayList<Product_DTO>();
+	public List<DTO_Product> selProductList(HttpServletRequest req){
+		List<DTO_Product> li = new ArrayList<DTO_Product>();
 		Map<String, String> sessionData = lsc.statusCall(req);
 		li = sst.selectList("shop_project.productAll", sessionData.get("activeLoginID"));
 		return li;
@@ -209,7 +209,7 @@ public class Admin_SQLModule {
 		return sessionData;
 	}
 	
-	public int addNotice(Notice_DTO dto, HttpServletRequest req) throws Exception{
+	public int addNotice(DTO_Notice dto, HttpServletRequest req) throws Exception{
 		Map<String, String> sessionData = lsc.statusCall(req);
 		String activeID = sessionData.get("activeLoginID");
 		dto.setAn_adminid(activeID);
@@ -222,10 +222,10 @@ public class Admin_SQLModule {
 		return result;
 	}
 	
-	public List<Notice_DTO> selNoticeList (HttpServletRequest req) {
+	public List<DTO_Notice> selNoticeList (HttpServletRequest req) {
 		Map<String, String> sessionData = lsc.statusCall(req);
 		String activeID = sessionData.get("activeLoginID");
-		List<Notice_DTO> li = sst.selectList("shop_project.noticeAll",activeID);
+		List<DTO_Notice> li = sst.selectList("shop_project.noticeAll",activeID);
 		return li;
 	}
 	
@@ -234,9 +234,33 @@ public class Admin_SQLModule {
 		return result;
 	}
 	
-	public List<Notice_DTO> selNoticeView (String an_idx) {
-		List<Notice_DTO> li = sst.selectList("shop_project.noticeView",an_idx);
+	public List<DTO_Notice> selNoticeView (String an_idx) {
+		List<DTO_Notice> li = sst.selectList("shop_project.noticeView",an_idx);
 		//System.out.println(li);
+		return li;
+	}
+	
+	public int updateNotice (DTO_Notice dto, HttpServletRequest req) throws Exception {
+		if(dto.getAn_file()!=null) {
+			Map<String,String> fileData = fp.fileProcess(dto.getAn_file(), req);
+			System.out.println(fileData.get("filename")+ "test");
+			dto.setAn_filename(fileData.get("filename"));
+			dto.setAn_fileurl(fileData.get("fileurl"));
+		}
+		
+		int result = sst.update("shop_project.noticeUpdate",dto);
+		return result;
+	}
+	
+	public int updateNoticeCount (String an_idx) {
+		int result = sst.update("shop_project.noticeCountUpdate",an_idx);
+		return result;
+	}
+	
+	public List<DTO_Agree> selAgreeView (HttpServletRequest req) {
+		Map<String, String> sessionData = lsc.statusCall(req);
+		String activeID = sessionData.get("activeLoginID");
+		List<DTO_Agree> li = sst.selectList("shop_project.agreeAll",activeID);
 		return li;
 	}
 }

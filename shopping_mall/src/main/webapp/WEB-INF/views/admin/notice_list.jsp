@@ -68,8 +68,8 @@
     </cr:choose>
     </div>
     <div class="board_btn">
-        <button class="border_del" onclick="noticeSelDel()">공지삭제</button>
-        <button class="border_add" onclick="location.href='./notice_write';">공지등록</button>
+        <input type="button" value="공지삭제" class="border_del" onclick="noticeSelDel()">
+        <input type="button" value="공지등록" class="border_add" onclick="location.href='./notice_write';">
     </div>
     <div class="border_page">
         <ul class="pageing">

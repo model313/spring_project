@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Site_DTO {
+public class DTO_Site {
 	//홈페이지 가입환경 설정
 	int si_idx, si_joinpoint;
 	String si_title, si_ademail, si_pointuse, si_userlevel;
