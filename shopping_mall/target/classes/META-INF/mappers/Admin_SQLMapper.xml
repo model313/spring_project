@@ -138,4 +138,19 @@
 	<select id="agreeAll" resultType="agreeDTO">
 		select * from site_agree where ag_adminid=#{ag_adminid}
 	</select>
+	
+	<insert id="addAgree">
+		insert into site_agree values (
+		'0',#{ag_useinfo},#{ag_datauseinfo},#{ag_adminid}
+		)
+	</insert>
+	
+	<update id="agreeUpdate">
+		update site_agree
+		set 
+		ag_useinfo=#{ag_useinfo}, 
+		ag_datauseinfo=#{ag_datauseinfo}
+		where ag_adminid=#{ag_adminid}
+	</update>
+	
 </mapper>

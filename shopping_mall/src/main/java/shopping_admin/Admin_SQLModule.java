@@ -263,4 +263,18 @@ public class Admin_SQLModule {
 		List<DTO_Agree> li = sst.selectList("shop_project.agreeAll",activeID);
 		return li;
 	}
+	
+	public int addAgree (DTO_Agree dto, HttpServletRequest req) throws Exception {
+		Map<String, String> sessionData = lsc.statusCall(req);
+		dto.setAg_adminid(sessionData.get("activeLoginID"));
+		int result = sst.insert("shop_project.addAgree",dto);
+		return result;
+	}
+	
+	public int updateAgree (DTO_Agree dto, HttpServletRequest req) throws Exception {
+		Map<String, String> sessionData = lsc.statusCall(req);
+		dto.setAg_adminid(sessionData.get("activeLoginID"));
+		int result = sst.update("shop_project.agreeUpdate",dto);
+		return result;
+	}
 }

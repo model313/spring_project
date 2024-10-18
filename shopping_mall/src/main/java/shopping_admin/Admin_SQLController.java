@@ -371,11 +371,56 @@ public class Admin_SQLController {
 	@GetMapping("/admin/shop_member_list.do")
 	public String shopMemberList (Model m, HttpServletRequest req) {
 		List<DTO_Agree> agreeList = sm.selAgreeView(req);
-		System.out.println(agreeList);
-		
 		m.addAttribute("agreeListResults",agreeList);
 		m.addAttribute("agreeListSize",agreeList.size());
 		return "/admin/shop_member_list";
 	}
-
+	
+	@PostMapping("/admin/agree_add")
+	public String agreeAdd (@ModelAttribute("agreedto") DTO_Agree dto, HttpServletResponse res, HttpServletRequest req) {
+		res.setContentType("text/html;charset=utf-8");
+		try {
+			this.pw = res.getWriter();
+			int callback = sm.addAgree(dto, req);
+			if(callback > 0) {
+				this.pw.print("<script>"
+						+ "alert('정상적으로 등록 완료 되었습니다');"
+						+ "location.href='./shop_member_list';"
+						+ "</script>");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.pw.print("<script>"
+					+ "alert('DB 오류로 인하여 등록되지 않았습니다');"
+					+ "history.go(-1);"
+					+ "</script>");
+		} finally {
+			this.pw.close();
+		}
+		return null;
+	}
+	
+	@PostMapping("/admin/agree_update")
+	public String agreeUpdate (@ModelAttribute("agreedto") DTO_Agree dto, HttpServletResponse res, HttpServletRequest req) {
+		res.setContentType("text/html;charset=utf-8");
+		try {
+			this.pw = res.getWriter();
+			int callback = sm.updateAgree(dto, req);
+			if(callback > 0) {
+				this.pw.print("<script>"
+						+ "alert('정상적으로 등록 완료 되었습니다');"
+						+ "location.href='./shop_member_list';"
+						+ "</script>");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.pw.print("<script>"
+					+ "alert('DB 오류로 인하여 등록되지 않았습니다');"
+					+ "history.go(-1);"
+					+ "</script>");
+		} finally {
+			this.pw.close();
+		}
+		return null;
+	}
 }

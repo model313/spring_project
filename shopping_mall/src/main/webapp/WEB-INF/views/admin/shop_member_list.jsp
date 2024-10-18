@@ -17,12 +17,7 @@
     <link rel="icon" href="/resources/admin/img/logo.png" sizes="16x16">
 </head>
 <body>
-<header class="headercss">
-    <div class="header_div">
-        <p><img src="/resources/admin/img/logo.png" class="logo_sm"> ADMINISTRATOR</p>
-        <p>홍길동 관리자 <a href="#">[개인정보 수정]</a> <a href="#">[로그아웃]</a></p>
-    </div>
-</header>
+<%@ include file="./admin_top.jsp" %>
 <nav class="navcss">
     <div class="nav_div">
         <ol>
@@ -69,31 +64,66 @@
 </section>
 
 <form id="agreeForm">
-	<section style="width: 1100px; height: auto; margin: 0 auto; margin-top: 30px;">
-	    <p style="font-size: 15px;font-weight: bolder; margin-bottom: 10px;">■ 이용 약관</p>
-	    <textarea name="ag_useinfo" placeholder="이용약관에 대한 내용을 입력하세요" style="width: 100%; height: 100px; resize: none;">
-	    
-	    </textarea>
-    	<cr:if test="${agreeListSize!=0}">
-		    <input type="button" value="이용약관 수정" title="이용약관 수정" class="btn_button" style="position: relative; left: 100%; margin-left: -100px;">
-    	</cr:if>
-	</section>
-	<section style="width: 1100px; height: auto; margin: 0 auto; margin-top: 30px;">
-	    <p style="font-size: 15px;font-weight: bolder; margin-bottom: 10px;">■ 개인정보 수집 및 이용</p>
-	    <textarea name="ag_datauseinfo" placeholder="개인정보 수집 및 이용" style="width: 100%; height: 100px; resize: none;">
-	    
-	    </textarea>
-	    <cr:choose>
-	    	<cr:when test="${agreeListSize!=0}">
-			    <input type="button" value="이용약관 수정" title="이용약관 수정" class="btn_button" style="position: relative; left: 100%; margin-left: -100px;">
-	    	</cr:when>
-	    	<cr:otherwise>
-	    		<input type="button" value="이용약관 등록" title="이용약관 수정" class="btn_button" style="position: relative; left: 100%; margin-left: -100px;">
-	    	</cr:otherwise>
-	    </cr:choose>
-	</section>
+<cr:choose>
+   	<cr:when test="${agreeListSize==0}">
+   		<section style="width: 1100px; height: auto; margin: 0 auto; margin-top: 30px;">
+		    <p style="font-size: 15px;font-weight: bolder; margin-bottom: 10px;">■ 이용 약관</p>
+		    <textarea 
+		    	name="ag_useinfo" 
+		    	placeholder="이용약관에 대한 내용을 입력하세요" 
+		    	style="width: 100%; height: 100px; resize: none;"
+	    	></textarea>
+		</section>
+		<section style="width: 1100px; height: auto; margin: 0 auto; margin-top: 30px;">
+			<p style="font-size: 15px;font-weight: bolder; margin-bottom: 10px;">■ 개인정보 수집 및 이용</p>
+			<textarea 
+				name="ag_datauseinfo" 
+				placeholder="개인정보 수집 및 이용" 
+				style="width: 100%; height: 100px; resize: none;"
+			></textarea>
+    		<input 
+    			type="button" 
+    			value="이용약관 등록" 
+    			title="이용약관 등록" 
+    			class="btn_button" 
+    			style="
+    				position: relative; 
+    				left: 100%; 
+    				margin-left: -100px;"
+   				onclick="agreeAddFormSend()"
+  				>
+		</section>
+   	</cr:when>
+   	<cr:otherwise>
+   		<cr:forEach var="agreeData" items="${agreeListResults}">
+	   	<section style="width: 1100px; height: auto; margin: 0 auto; margin-top: 30px;">
+		    <p style="font-size: 15px;font-weight: bolder; margin-bottom: 10px;">■ 이용 약관</p>
+		    <textarea 
+		    	name="ag_useinfo" 
+		    	placeholder="등록된 이용약관에 대한 내용이 없습니다" 
+		    	style="width: 100%; height: 150px; resize: none;"
+	    	>${agreeData.ag_useinfo}</textarea>
+		</section>
+		<section style="width: 1100px; height: auto; margin: 0 auto; margin-top: 30px;">
+		    <p style="font-size: 15px;font-weight: bolder; margin-bottom: 10px;">■ 개인정보 수집 및 이용</p>
+		    <textarea 
+			    name="ag_datauseinfo" 
+			    placeholder="등록된 개인정보 수집 및 이용에대한 내용이 없습니다" 
+			    style="width: 100%; height: 150px; resize: none;"
+		    >${agreeData.ag_datauseinfo}</textarea>
+		    <input 
+		    	type="button" 
+		    	value="약관 정보 수정" 
+		    	title="약관 정보 수정"
+		    	class="btn_button" 
+		    	style="position: relative; left: 100%; margin-left: -100px;"
+		    	onclick="agreeModFormSend()"
+	    	>
+		</section>
+   		</cr:forEach>
+   	</cr:otherwise>
+</cr:choose>
 </form>
-
 </main>
 <footer class="main_copyright">
     <div>
@@ -101,4 +131,5 @@
     </div>
 </footer>
 </body>
+<script src="/resources/admin/js/shop_member_list.js?v=2"></script>
 </html>
