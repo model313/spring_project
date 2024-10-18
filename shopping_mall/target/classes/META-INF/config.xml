@@ -4,10 +4,10 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias alias="adminDTO" type="shopping_admin.DTO_Admin"/>
-		<typeAlias alias="cateDTO" type="shopping_admin.DTO_Cate"/>
-		<typeAlias alias="productDTO" type="shopping_admin.DTO_Product"/>
-		<typeAlias alias="noticeDTO" type="shopping_admin.DTO_Notice"/>
-		<typeAlias alias="agreeDTO" type="shopping_admin.DTO_Agree"/>
+		<typeAlias alias="adminDTO" type="kr.co.shopbag.dto.DTO_Admin"/>
+		<typeAlias alias="cateDTO" type="kr.co.shopbag.dto.DTO_Cate"/>
+		<typeAlias alias="productDTO" type="kr.co.shopbag.dto.DTO_Product"/>
+		<typeAlias alias="noticeDTO" type="kr.co.shopbag.dto.DTO_Notice"/>
+		<typeAlias alias="agreeDTO" type="kr.co.shopbag.dto.DTO_Agree"/>
 	</typeAliases>
 </configuration>
