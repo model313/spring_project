@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 등록 페이지</title>
     <link rel="stylesheet" type="text/css" href="/resources/admin/css/basic.css">
-    <link rel="stylesheet" type="text/css" href="/resources/admin/css/login.css?v=1">
-    <link rel="stylesheet" type="text/css" href="/resources/admin/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/login.css?v=3">
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/main.css?v=3">
     <link rel="stylesheet" type="text/css" href="/resources/admin/css/subpage.css?v=5">
     <link rel="icon" href="/resources/admin/img/logo.png" sizes="128x128">
     <link rel="icon" href="/resources/admin/img/logo.png" sizes="64x64">
@@ -18,16 +18,7 @@
 </head>
 <body>
 <%@ include file="./admin_top.jsp" %>
-<nav class="navcss">
-    <div class="nav_div">
-        <ol>
-            <li title="쇼핑몰 회원관리">쇼핑몰 회원관리</li>
-            <li title="쇼핑몰 상품관리">쇼핑몰 상품관리</li>
-            <li title="쇼핑몰 기본설정">쇼핑몰 기본설정</li>
-        </ol>
-    </div>
-
-</nav>
+<%@ include file="./admin_banner.jsp" %>
 <form id="siteInfoForm">
 <main class="maincss">
 	<section>

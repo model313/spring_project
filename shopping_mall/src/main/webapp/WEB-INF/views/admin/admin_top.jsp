@@ -6,9 +6,9 @@
 <body>
 <header class="headercss">
     <div class="header_div">
-        <p><img src="/resources/admin/img/logo.png" class="logo_sm"> ADMINISTRATOR</p>
-        <p>관리자 : ${sessionScope.activeLoginUser }님 <a href="#">[개인정보 수정]</a> <a href="./admin_logout">[로그아웃]</a></p>
+        <p onclick="location.href='/admin/admin_list';" class="custom_hover"><img src="/resources/admin/img/logo.png" class="logo_sm"> ADMINISTRATOR</p>
+        <p>관리자 : ${sessionScope.activeLoginUser }님 <a href="./admin_logout">[로그아웃]</a></p>
     </div>
 </header>
-<script src="/resources/admin/js/admin_top.js?v=4"></script>
+<script src="/resources/admin/js/admin_top.js"></script>
 </html>

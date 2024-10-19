@@ -1,0 +1,6 @@
+select * from admin_member;
+select * from admin_site;
+select * from site_cate;
+select * from site_product;
+select * from admin_notice;
+select * from site_agree;

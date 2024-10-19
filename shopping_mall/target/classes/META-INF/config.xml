@@ -5,9 +5,11 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="adminDTO" type="kr.co.shopbag.dto.DTO_Admin"/>
+		<typeAlias alias="siteDTO" type="kr.co.shopbag.dto.DTO_Site"/>
 		<typeAlias alias="cateDTO" type="kr.co.shopbag.dto.DTO_Cate"/>
 		<typeAlias alias="productDTO" type="kr.co.shopbag.dto.DTO_Product"/>
 		<typeAlias alias="noticeDTO" type="kr.co.shopbag.dto.DTO_Notice"/>
 		<typeAlias alias="agreeDTO" type="kr.co.shopbag.dto.DTO_Agree"/>
+		<typeAlias alias="userDTO" type="kr.co.shopbag.dto.DTO_User"/>
 	</typeAliases>
 </configuration>

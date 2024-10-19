@@ -217,6 +217,10 @@
     margin-top: -4px;
     cursor: pointer;
 }
+.custom_btn_width {
+	width: 70px;
+}
+
 .main_copyright {
     width: 100%;
     position : fixed;
@@ -232,4 +236,7 @@
     line-height: 40px;
     text-align: center;
     color: white;
+}
+.custom_hover{
+	cursor: pointer;
 }

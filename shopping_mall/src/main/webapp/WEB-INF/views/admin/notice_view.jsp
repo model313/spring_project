@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항 내용 확인 페이지</title>
     <link rel="stylesheet" type="text/css" href="/resources/admin/css/basic.css">
-    <link rel="stylesheet" type="text/css" href="/resources/admin/css/login.css?v=10">
-    <link rel="stylesheet" type="text/css" href="/resources/admin/css/main.css?v=10">
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/login.css?v=3">
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/main.css?v=3">
     <link rel="stylesheet" type="text/css" href="/resources/admin/css/notice.css?v=3">
     <link rel="stylesheet" type="text/css" href="/resources/admin/css/imagemodal.css?v=3">
     <link rel="icon" href="/resources/admin/img/logo.png" sizes="128x128">
@@ -20,18 +20,7 @@
 </head>
 <body>
 <%@ include file="./admin_top.jsp" %>
-<nav class="navcss">
-    <div class="nav_div">
-        <ol>
-            <li title="쇼핑몰 상품관리">쇼핑몰 관리자 리스트</li>
-            <li title="쇼핑몰 회원관리">쇼핑몰 회원관리</li>
-            <li title="쇼핑몰 상품관리">쇼핑몰 상품관리</li>
-            <li title="쇼핑몰 기본설정">쇼핑몰 기본설정</li>
-            <li title="쇼핑몰 공지사항">쇼핑몰 공지사항</li>
-        </ol>
-    </div>
-
-</nav>
+<%@ include file="./admin_banner.jsp" %>
 
 <main class="maincss">
 <section>

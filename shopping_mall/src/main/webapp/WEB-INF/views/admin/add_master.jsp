@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 등록 페이지</title>
     <link rel="stylesheet" type="text/css" href="/resources/admin/css/basic.css">
-    <link rel="stylesheet" type="text/css" href="/resources/admin/css/login.css?v=1">
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/login.css?v=3">
     <link rel="icon" href="/resources/admin/img/logo.png" sizes="128x128">
     <link rel="icon" href="/resources/admin/img/logo.png" sizes="64x64">
     <link rel="icon" href="/resources/admin/img/logo.png" sizes="32x32">

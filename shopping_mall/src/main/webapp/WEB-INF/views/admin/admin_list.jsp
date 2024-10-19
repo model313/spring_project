@@ -10,8 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 등록 페이지</title>
     <link rel="stylesheet" type="text/css" href="/resources/admin/css/basic.css">
-    <link rel="stylesheet" type="text/css" href="/resources/admin/css/login.css?v=1">
-    <link rel="stylesheet" type="text/css" href="/resources/admin/css/main.css?v=1">
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/login.css?v=3">
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/main.css?v=3">
     <link rel="icon" href="/resources/admin/img/logo.png" sizes="128x128">
     <link rel="icon" href="/resources/admin/img/logo.png" sizes="64x64">
     <link rel="icon" href="/resources/admin/img/logo.png" sizes="32x32">
@@ -20,18 +20,8 @@
 </head>
 <body>
 <%@ include file="./admin_top.jsp" %>
-<nav class="navcss">
-    <div class="nav_div">
-        <ol>
-            <li title="쇼핑몰 상품관리">쇼핑몰 관리자 리스트</li>
-            <li title="쇼핑몰 회원관리">쇼핑몰 회원관리</li>
-            <li title="쇼핑몰 상품관리">쇼핑몰 상품관리</li>
-            <li title="쇼핑몰 기본설정">쇼핑몰 기본설정</li>
-            <li title="쇼핑몰 공지사항">쇼핑몰 공지사항</li>
-        </ol>
-    </div>
+<%@ include file="./admin_banner.jsp" %>
 
-</nav>
 <main class="maincss">
 <section>
     <p>신규등록 관리자</p>
@@ -70,10 +60,10 @@
 			        	
 			        	<cr:choose>
 			        		<cr:when test="${adminData.ad_approve=='N'}">
-					            <input type="button" value="승인" class="new_addbtn1" title="승인" onclick="adminApprove(${adminData.ad_idx},'${sessionScope.activeLoginID}')">
+					            <input type="button" value="승인" class="new_addbtn1" title="상태: 미승인" onclick="adminApprove(${adminData.ad_idx},'${sessionScope.activeLoginID}')">
 			        		</cr:when>
 			        		<cr:when test="${adminData.ad_approve=='Y'}">
-					            <input type="button" value="미승인" class="new_addbtn2" title="미승인" onclick="adminNotApprove(${adminData.ad_idx},'${sessionScope.activeLoginID}')">
+					            <input type="button" value="승인해제" class="new_addbtn2 custom_btn_width" title="상태: 승인" onclick="adminNotApprove(${adminData.ad_idx},'${sessionScope.activeLoginID}')">
 			        		</cr:when>
 			        		<cr:when test="${adminData.ad_approve=='M'}">
 					        	---

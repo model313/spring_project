@@ -25,21 +25,31 @@
 		select * from admin_member where ad_id=#{ad_id}
 	</select>
 	
-	<insert id="addSite">
-		insert into admin_site values (
-		'0',
-		#{si_title},#{si_ademail},#{si_pointuse},#{si_joinpoint},
-		#{si_userlevel},#{si_coname},#{si_coregno},#{si_ceoname},
-		#{si_ceotel},#{si_mosregno},#{si_vatbregno},#{si_copostal},
-		#{si_coaddr},#{si_imadminname},#{si_imadminemail},#{si_nbkname},
-		#{si_bkaccno},#{si_cardpayuse},#{si_telpayuse},#{si_dcmcpayuse},
-		#{si_pointusemin},#{si_pointusemax},#{si_cashrcptuse},#{si_delconame},
-		#{si_delprice},#{si_deldateuse},now(),#{si_adminid}
-		)
-	</insert>
+	<select id="selSite" resultType="siteDTO">
+		select * from admin_site where si_idx='1'
+	</select>
+	
+	<update id="modSite">
+		update admin_site set
+		si_title=#{si_title},si_ademail=#{si_ademail},
+		si_pointuse=#{si_pointuse},si_joinpoint=#{si_joinpoint},
+		si_userlevel=#{si_userlevel},si_coname=#{si_coname},
+		si_coregno=#{si_coregno},si_ceoname=#{si_ceoname},
+		si_ceotel=#{si_ceotel},si_mosregno=#{si_mosregno},
+		si_vatbregno=#{si_vatbregno},si_copostal=#{si_copostal},
+		si_coaddr=#{si_coaddr},si_imadminname=#{si_imadminname},
+		si_imadminemail=#{si_imadminemail},si_nbkname=#{si_nbkname},
+		si_bkaccno=#{si_bkaccno},si_cardpayuse=#{si_cardpayuse},
+		si_telpayuse=#{si_telpayuse},si_dcmcpayuse=#{si_dcmcpayuse},
+		si_pointusemin=#{si_pointusemin},si_pointusemax=#{si_pointusemax},
+		si_cashrcptuse=#{si_cashrcptuse},si_delconame=#{si_delconame},
+		si_delprice=#{si_delprice},si_deldateuse=#{si_deldateuse},
+		si_indate=now(),si_adminid=#{si_adminid}
+		where si_idx='1'
+	</update>
 	
 	<select id="cateAll" resultType="cateDTO">
-		select * from site_cate where ca_adminid=#{ca_adminid} order by ca_class asc
+		select * from site_cate order by ca_class asc
 	</select>
 	
 	<insert id="addCate">
@@ -70,7 +80,7 @@
 	</insert>
 	
 	<select id="productAll" resultType="productDTO">
-		select * from site_product where pr_adminid=#{pr_adminid} order by pr_caname asc
+		select * from site_product order by pr_caname asc
 	</select>
 	
 	<select id="productCondition" resultType="_int" parameterType="Map">
@@ -103,7 +113,7 @@
 	</insert>
 	
 	<select id="noticeAll" resultType="noticeDTO">
-		select * from admin_notice where an_adminid=#{activeID} order by an_showtop asc, an_idx desc
+		select * from admin_notice order by an_showtop asc, an_idx desc
 	</select>
 	
 	<delete id="delNotice" parameterType="String">
@@ -136,6 +146,10 @@
 	</update>
 	
 	<select id="agreeAll" resultType="agreeDTO">
-		select * from site_agree where ag_adminid=#{ag_adminid}
+		select * from site_agree where ag_idx = '2'
+	</select>
+	
+	<select id="usersAll" resultType="userDTO">
+		select * from mallpage_member
 	</select>
 </mapper>
