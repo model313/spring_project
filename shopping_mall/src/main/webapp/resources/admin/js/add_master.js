@@ -101,3 +101,9 @@ function addTelNum(){
 	var tel = add_admin_frm.tel1.value + add_admin_frm.tel2.value + add_admin_frm.tel3.value
 	document.getElementById("ad_tel").setAttribute("value",tel);
 }
+
+function cancelAddAdmin(){
+	if(confirm("이 페이지를 떠나시면 변경 사항이 모두 사라집니다")){
+		location.href="/admin/login";
+	}
+}

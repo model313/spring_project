@@ -34,6 +34,12 @@ const noticeFormSend = () => {
 	}
 }
 
+const cancelNoticeWrite = () => {
+	if(confirm("이 페이지를 떠나시면 변경 사항이 모두 사라집니다")){
+		location.href="/admin/notice_list";
+	}
+}
+
 class noticeDataTools{
 	fileTypeCheck(input){
 		if(allowedExtension.indexOf(input.files[0].type)<=-1){

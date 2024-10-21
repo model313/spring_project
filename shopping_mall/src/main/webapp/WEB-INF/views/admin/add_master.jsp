@@ -8,14 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 등록 페이지</title>
     <link rel="stylesheet" type="text/css" href="/resources/admin/css/basic.css">
-    <link rel="stylesheet" type="text/css" href="/resources/admin/css/login.css?v=3">
+    <link rel="stylesheet" type="text/css" href="/resources/admin/css/mainlogin.css">
     <link rel="icon" href="/resources/admin/img/logo.png" sizes="128x128">
     <link rel="icon" href="/resources/admin/img/logo.png" sizes="64x64">
     <link rel="icon" href="/resources/admin/img/logo.png" sizes="32x32">
     <link rel="icon" href="/resources/admin/img/logo.png" sizes="16x16">
-    <script src="/resources/admin/js/add_master.js?v=1"></script>
+    <script src="/resources/admin/js/add_master.js?v=6"></script>
 </head>
-<body>
+<body class="bodycss">
     <header class="admin_title_add">
         <p><img src="/resources/admin/img/logo.png" class="logo_sm"> ADMINISTRATOR ADD</p>
     </header>
@@ -74,7 +74,7 @@
             </ul>
             <span class="admin_addbtn">
                 <input type="button" value="관리자 등록" class="btn_button btncolor1" title="관리자 등록" onclick="admin_add()">
-                <input type="button" value="등록 취소" class="btn_button btncolor2" title="관리자 취소" onclick="admin_cancel()">
+                <input type="button" value="등록 취소" class="btn_button btncolor2" title="관리자 취소" onclick="cancelAddAdmin()">
             </span>
         </div>
     </form>

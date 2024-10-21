@@ -7,6 +7,10 @@
 * {
     box-sizing: border-box;
 }
+.bodycss{
+    height: 100vh;
+    position: relative;
+}
 .logo_sm { 
     width: 30px; 
     object-fit: cover;

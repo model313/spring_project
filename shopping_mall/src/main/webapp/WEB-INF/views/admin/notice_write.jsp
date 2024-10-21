@@ -61,7 +61,7 @@
 	</ul>
 	</div>
 	<div class="board_btn">
-	    <input type="button" value="공지목록" class="border_del">
+	    <input type="button" value="공지목록" class="border_del" onclick="cancelNoticeWrite()">
 	    <input type="button" value="공지등록" class="border_add" onclick="noticeFormSend()">
 	</div>
 	</section>
@@ -74,5 +74,5 @@
 </footer>
 </body>
 <script src="/resources/admin/ckeditor/ckeditor.js?v=6"></script>
-<script src="/resources/admin/js/notice_write.js?v=3"></script>
+<script src="/resources/admin/js/notice_write.js?v=4"></script>
 </html>
