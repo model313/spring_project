@@ -24,7 +24,7 @@
 <form id="noticeModForm">
 	<main class="maincss">
 	<section>
-	    <p>공지사항 등록페이지</p>
+	    <p>공지사항 수정페이지</p>
 	<div class="write_view">
 		<cr:forEach var="data" items="${resultList}">
 			<ul>
